@@ -1,0 +1,17 @@
+{
+  "name": "rss-reader",
+  "version": "1.0.0",
+  "main": "./server/index.js",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "scripts": {
+    "start": "nodemon --experimental-modules"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.4"
+  }
+}
