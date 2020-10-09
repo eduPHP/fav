@@ -8,7 +8,7 @@
     "express": "^4.17.1"
   },
   "scripts": {
-    "start": "nodemon --experimental-modules"
+    "start": "nodemon"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
