@@ -9,6 +9,7 @@ What will I use?
 - Some sort of cache for results
 - Background proccesses to update the lists
 
+I will create an [issue](https://github.com/swalker2/node-rss-reader/issues) for any problems that I face
 
 ### Backend requirements
 
