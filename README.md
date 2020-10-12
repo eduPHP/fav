@@ -7,7 +7,7 @@ What will I use?
 - Mysql as database maybe some ORM later
 - **Not** using any lib to read RSS, I want to implement it myself
 - Some sort of cache for results
-- Background proccesses to update the lists
+- Background proccesses to update the lists and notify new items
 
 I will create an [issue](https://github.com/swalker2/node-rss-reader/issues) for any problems that I face
 
@@ -17,10 +17,18 @@ I will create an [issue](https://github.com/swalker2/node-rss-reader/issues) for
 - [x] List rss links
 - [x] Edit rss links
 - [x] Remove rss links
-- [ ] Read rss from saved link
+- [x] Read rss from saved link
+- [ ] add validation
+- [ ] add user authentication
+  - [ ] register user
+  - [ ] login user
+  - [ ] get user profile
+  - [ ] update user
+- [ ] protect routes
 
 ### Frontend requirements
-
+- [ ] user login and register
+- [ ] password recover
 - [ ] Save rss links
 - [ ] List rss links
 - [ ] Edit rss links

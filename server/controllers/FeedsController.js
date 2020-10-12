@@ -1,13 +1,24 @@
 import db from '../database.js'
+import { Validator } from '../util/validator.js'
+
+const validator = new Validator({
+    name: 'required',
+    url: 'required|url',
+    active: 'boolean'
+})
 
 class FeedsController {
-    store(req, res) {
-        const {name, url, active} = req.body
-        db.insert('feeds', {name, url, active}).then(feed => {
-            res.send({feed})
-        }).catch(err => {
-            console.log(err)
-            res.send({err})
+    async store(req, res) {
+        validator.validate(req)
+        .then(data => {
+            db.insert('feeds', data).then(feed => {
+                res.send({feed})
+            }).catch(err => {
+                res.send({err})
+            })
+        })
+        .catch(err => {
+            res.send(err)
         })
     }
 
@@ -30,13 +41,19 @@ class FeedsController {
     }
 
     update(req, res) {
-        const {name, url, active} = req.body
-        db.update('feeds', req.params.id, {name, url, active}).then(feed => {
-            res.send({feed})
-        }).catch(err => {
-            console.log(err)
-            res.send({err})
+        validator.validate(req)
+        .then(data => {
+            db.update('feeds', req.params.id, data).then(feed => {
+                res.send({feed})
+            }).catch(err => {
+                console.log(err)
+                res.send({err})
+            })
         })
+        .catch(err => {
+            res.send(err)
+        })
+        
     }
 
     destroy(req, res) {
