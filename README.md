@@ -18,10 +18,11 @@ I will create an [issue](https://github.com/swalker2/node-rss-reader/issues) for
 - [x] Edit rss links
 - [x] Remove rss links
 - [x] Read rss from saved link
-- [ ] add validation
+- [x] add validation
 - [ ] add user authentication
   - [ ] register user
   - [ ] login user
+  - [ ] password recover
   - [ ] get user profile
   - [ ] update user
 - [ ] protect routes
