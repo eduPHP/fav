@@ -2,6 +2,7 @@ import {Request, Response} from 'express'
 import * as Yup from 'yup'
 import Feed from "../models/Feed";
 import {getRepository} from "typeorm";
+import feedsView from '../views/feeds'
 
 class FeedsController {
     async store(req: Request, res: Response) {
@@ -12,12 +13,12 @@ class FeedsController {
             active: Yup.boolean()
         })
 
-        const data = await schema.validate(req.body, {abortEarly: true}) as Feed
+        const data = await schema.validate(req.body, {abortEarly: false}) as Feed
 
         const feed = feedRepository.create(data)
         await feedRepository.save(feed)
 
-        return res.status(201).json({feed})
+        return res.status(201).json({feed: feedsView.render(feed)})
     }
 
     async index(req: Request, res: Response) {
@@ -25,7 +26,7 @@ class FeedsController {
 
         const feeds = await feedRepository.find()
 
-        return res.json({feeds})
+        return res.json({feeds: feedsView.renderMany(feeds)})
     }
 
     async show(req: Request, res: Response) {
@@ -35,7 +36,7 @@ class FeedsController {
 
         const feed = await feedRepository.findOneOrFail(id)
 
-        return res.json({feed})
+        return res.json({feed: feedsView.render(feed)})
     }
 
     async update(req: Request, res: Response) {
@@ -52,7 +53,7 @@ class FeedsController {
         await feedRepository.update(id, data)
         const feed = await feedRepository.findOneOrFail(id)
 
-        return res.json({feed})
+        return res.json({feed: feedsView.render(feed)})
     }
 
     async destroy(req: Request, res: Response) {
