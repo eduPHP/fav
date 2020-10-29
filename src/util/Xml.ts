@@ -1,27 +1,27 @@
 import xml2js from 'xml2js'
 
-const parser = new xml2js.Parser()
+const parser = new xml2js.Parser({explicitArray: false})
 
 interface Item {
-    title: string[]
-    author: string[]
-    link: string[]
-    pubDate: string[]
+    title: string
+    author: string
+    link: string
+    pubDate: string
 }
 
 export default {
     async parse(xml: any) {
         const parsed = await parser.parseStringPromise(xml)
-        const channel = parsed.rss.channel[0]
+        const channel = parsed.rss.channel
         return {
-            title: channel.title[0],
-            link: channel.link[0],
+            title: channel.title,
+            link: channel.link,
             item: channel.item.map((item: Item) => {
                 return {
-                    title: item.title[0],
-                    author: item.author ? item.author[0] : null,
-                    link: item.link[0],
-                    pubDate: item.pubDate[0]
+                    title: item.title,
+                    author: item.author ? item.author : null,
+                    link: item.link,
+                    pubDate: item.pubDate
                 }
             })
         }
