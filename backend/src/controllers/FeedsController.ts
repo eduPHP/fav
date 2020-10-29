@@ -15,7 +15,7 @@ class FeedsController {
 
         const data = await schema.validate(req.body, {abortEarly: false}) as Feed
 
-        const feed = feedRepository.create(data)
+        const feed = await feedRepository.create(data)
         await feedRepository.save(feed)
 
         return res.status(201).json({feed: feedsView.render(feed)})
