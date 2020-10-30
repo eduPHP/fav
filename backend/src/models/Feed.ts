@@ -11,6 +11,8 @@ export default class Feed {
     url: string;
     @Column()
     active: boolean;
+    @Column()
+    user_id: number;
 
     @ManyToOne(() => User, user => user.feeds)
     @JoinColumn({name: 'user_id'})

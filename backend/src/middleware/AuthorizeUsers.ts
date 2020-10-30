@@ -1,11 +1,11 @@
 import {Request, Response} from "express";
-import config from "../util/config";
+import {getRepository} from "typeorm";
+import jwt from 'jsonwebtoken'
+import {promisify} from 'util'
 
-const jwt = require("jsonwebtoken");
-const { promisify } = require("util");
-
-import {UserView} from "../models/User";
+import User, {UserView} from "../models/User";
 import users_view from "../views/users_view";
+import config from "../util/config";
 
 declare global {
     namespace Express {
@@ -25,10 +25,14 @@ export default async (req: Request, res: Response, next: CallableFunction) => {
     const [, token] = authHeader.split("Bearer ");
 
     try {
-        req.user = users_view.render(await promisify(jwt.verify)(token, config.app.key))
+        const id = await promisify(jwt.verify)(token, config.app.key) as string
+        const repo = getRepository(User)
+        const user = await repo.findOneOrFail(id)
+        req.user = users_view.render(user)
 
         return next();
     } catch (err) {
+        console.log(err);
         return res.status(401).json({ error: "Invalid token" });
     }
 };

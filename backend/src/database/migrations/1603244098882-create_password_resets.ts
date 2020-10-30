@@ -21,7 +21,8 @@ export class createPasswordResets1603244098882 implements MigrationInterface {
                 {
                     name: 'used_at',
                     type: 'datetime',
-                    isNullable: true
+                    isNullable: true,
+                    default: null
                 },
                 {
                     name: 'created_at',
@@ -30,7 +31,7 @@ export class createPasswordResets1603244098882 implements MigrationInterface {
                 {
                     name: 'user_id',
                     type: 'integer',
-                    unsigned: true,
+                    unsigned: true
                 }
             ]
         }))

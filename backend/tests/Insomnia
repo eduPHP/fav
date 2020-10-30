@@ -1,0 +1,401 @@
+_type: export
+__export_format: 4
+__export_date: 2020-10-30T06:04:07.237Z
+__export_source: insomnia.desktop.app:v2020.4.1
+resources:
+  - _id: req_9a4cc6fe7aa34d7f97089964e23652aa
+    parentId: fld_b776da2724f1435a83f0ba3a0f705aaf
+    modified: 1604033152335
+    created: 1604033018345
+    url: "{{ baseURL }}/api/auth/user"
+    name: Get User Profile
+    description: ""
+    method: GET
+    body:
+      mimeType: application/json
+    parameters: []
+    headers:
+      - name: accept
+        value: application/json
+        id: pair_bc455381e9734cdab14486e2c676345c
+      - name: content-type
+        value: application/json
+        id: pair_a9035f8a17a24f87b0aa35f778ab5755
+    authentication:
+      type: bearer
+      token: "{{ testJWT }}"
+    metaSortKey: -1604033018413
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_b776da2724f1435a83f0ba3a0f705aaf
+    parentId: wrk_1c40952931f447d1910c29aa98f273db
+    modified: 1604032308098
+    created: 1604032308098
+    name: Auth
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1604032308098
+    _type: request_group
+  - _id: wrk_1c40952931f447d1910c29aa98f273db
+    parentId: null
+    modified: 1602207371944
+    created: 1602207371944
+    name: Node RSS Reader
+    description: ""
+    scope: null
+    _type: workspace
+  - _id: req_d3b1b1c799c849149bce4f30df27b3d9
+    parentId: fld_b776da2724f1435a83f0ba3a0f705aaf
+    modified: 1604033200469
+    created: 1604032939850
+    url: "{{ baseURL }}/api/auth/recover"
+    name: Reset Password Save
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"password": "123456",
+        	"token": "1.g0aqgg4knf"
+        }
+    parameters: []
+    headers:
+      - name: content-type
+        value: application/json
+        id: pair_d77c476167014517a73ebda41a017aa1
+    authentication: {}
+    metaSortKey: -1604032939918
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_ba4f23a716da4c758cea826a9a498347
+    parentId: fld_b776da2724f1435a83f0ba3a0f705aaf
+    modified: 1604032958545
+    created: 1604032493818
+    url: "{{ baseURL }}/api/auth/recover"
+    name: Request Recover Password
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+          "email": "edu@rdo.blog.br"
+        }
+    parameters: []
+    headers:
+      - name: content-type
+        value: application/json
+        id: pair_659580b8c3c64979bbfd5827a34ec55f
+    authentication: {}
+    metaSortKey: -1604032493818
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_869cebfdc5f64a02ad79d730b8a64955
+    parentId: fld_b776da2724f1435a83f0ba3a0f705aaf
+    modified: 1604034587805
+    created: 1604032352552
+    url: "{{ baseURL }}/api/auth/login"
+    name: Login
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"email": "edu@rdo.blog.br",
+        	"password": "123456"
+        }
+    parameters: []
+    headers:
+      - name: accept
+        value: application/json
+        id: pair_49ceaa429c8c4c56abcde7f56146b307
+      - name: content-type
+        value: application/json
+        id: pair_0ca2703bd7734af0b36be67afd6fc8a8
+    authentication: {}
+    metaSortKey: -1604032352552
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_1271827d4ca044349b7f3b3aeffbc432
+    parentId: fld_b776da2724f1435a83f0ba3a0f705aaf
+    modified: 1604036487047
+    created: 1604031279723
+    url: "{{ baseURL }}/api/auth/register"
+    name: Register
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "Teste",
+        	"email": "fulano@rdo.blog.br",
+        	"password": "secret"
+        }
+    parameters: []
+    headers:
+      - name: accept
+        value: application/json
+        id: pair_fdf7657edf2c40a3867e8effc2da95c4
+      - name: content-type
+        value: application/json
+        id: pair_e42826a2be2d4630bf2588d506491c91
+    authentication: {}
+    metaSortKey: -1604031279723
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_94c353a512554664b38f1970c790183e
+    parentId: fld_c79a8e1980484470b89e6249bcea38ab
+    modified: 1604033845191
+    created: 1602207392587
+    url: "{{ baseURL }}/api/feeds"
+    name: Create feed
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "Teste",
+        	"url": "https://teste.com/feed/",
+        	"active": true
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_8127771508684223bb2f8d21fc519bdf
+    authentication:
+      type: bearer
+      token: "{{ testJWT }}"
+    metaSortKey: -1602207392587
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_c79a8e1980484470b89e6249bcea38ab
+    parentId: wrk_1c40952931f447d1910c29aa98f273db
+    modified: 1604032262003
+    created: 1604032262003
+    name: Feeds
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1604032262003
+    _type: request_group
+  - _id: req_800398a7d59e43098277483debc6af0c
+    parentId: fld_c79a8e1980484470b89e6249bcea38ab
+    modified: 1604035970349
+    created: 1602218356726
+    url: "{{ baseURL }}/api/feeds"
+    name: List feeds
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ testJWT }}"
+    metaSortKey: -1602207392537
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_ee351fc65bf94c898aa4401b36909160
+    parentId: fld_c79a8e1980484470b89e6249bcea38ab
+    modified: 1604037183642
+    created: 1602218498684
+    url: "{{ baseURL }}/api/feeds/4"
+    name: Get feed
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ testJWT }}"
+    metaSortKey: -1602207392487
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a2a568ef8b7647978d872c1b5c401614
+    parentId: fld_c79a8e1980484470b89e6249bcea38ab
+    modified: 1604037745406
+    created: 1602218983816
+    url: "{{ baseURL }}/api/feeds/4"
+    name: Update feed
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "WuxiaWorld!",
+        	"url": "http://www.wuxiaworld.com/feed/",
+        	"active": false
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_acfd304ed24140a3bc009a929c456ee9
+    authentication:
+      type: bearer
+      token: "{{ testJWT }}"
+    metaSortKey: -1602207392437
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_a070913990a74f9097d9dd91d6bcf21b
+    parentId: fld_c79a8e1980484470b89e6249bcea38ab
+    modified: 1604037545833
+    created: 1602219924861
+    url: "{{ baseURL }}/api/feeds/6"
+    name: Delete feed
+    description: ""
+    method: DELETE
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ testJWT }}"
+    metaSortKey: -1602207392387
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_2de4f25e0bd64fecaa3c96a5f9653858
+    parentId: fld_c79a8e1980484470b89e6249bcea38ab
+    modified: 1604037686235
+    created: 1602474224593
+    url: "{{ baseURL }}/api/feeds/4/list"
+    name: Get feed list
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication:
+      type: bearer
+      token: "{{ testJWT }}"
+    metaSortKey: -1602207392337
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_47629a590cd3729aae99a15c9c418320f77531c0
+    parentId: wrk_1c40952931f447d1910c29aa98f273db
+    modified: 1604032421768
+    created: 1602207371995
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: {}
+    color: null
+    isPrivate: false
+    metaSortKey: 1602207371995
+    _type: environment
+  - _id: jar_47629a590cd3729aae99a15c9c418320f77531c0
+    parentId: wrk_1c40952931f447d1910c29aa98f273db
+    modified: 1602627040427
+    created: 1602207371999
+    name: Default Jar
+    cookies:
+      - key: __cfduid
+        value: d869fcef3e9b8b420ecc1de5baa2bd01b1602627039
+        expires: 2020-11-12T22:10:39.000Z
+        domain: builderall.com
+        path: /
+        httpOnly: true
+        extensions:
+          - SameSite=Lax
+        hostOnly: false
+        creation: 2020-10-13T22:10:40.418Z
+        lastAccessed: 2020-10-13T22:10:40.418Z
+        id: "2529283941368008"
+    _type: cookie_jar
+  - _id: spc_b70259835da84ef98d9f924aa3d30227
+    parentId: wrk_1c40952931f447d1910c29aa98f273db
+    modified: 1602207371956
+    created: 1602207371956
+    fileName: Node RSS Reader
+    contents: ""
+    contentType: yaml
+    _type: api_spec
+  - _id: env_aa2e68d3c4ac482bb576464f29bd8c74
+    parentId: env_47629a590cd3729aae99a15c9c418320f77531c0
+    modified: 1604035679731
+    created: 1604032386364
+    name: DEV
+    data:
+      baseURL: http://localhost:3333
+      testJWT: eyJhbGciOiJIUzI1NiJ9.MQ.LbjLKjadCD0c7ASAUchXzf51D5OB0kZ5uQhtbISKHeI
+    dataPropertyOrder:
+      "&":
+        - baseURL
+        - testJWT
+    color: "#c2c2c2"
+    isPrivate: false
+    metaSortKey: 1604032386364
+    _type: environment

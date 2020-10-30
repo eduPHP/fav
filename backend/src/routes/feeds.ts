@@ -1,8 +1,11 @@
 import {Router} from "express";
 import FeedsController from '../controllers/FeedsController'
 import RssReaderController from '../controllers/RssReaderController'
+import AuthorizeUsers from "../middleware/AuthorizeUsers";
 
 const router = Router()
+
+router.use('/feeds', AuthorizeUsers)
 
 // feeds CRUD
 router.post('/feeds', FeedsController.store)

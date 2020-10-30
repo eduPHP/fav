@@ -10,10 +10,14 @@ class FeedsController {
         const schema = Yup.object().shape({
             name: Yup.string().required(),
             url: Yup.string().url().required(),
-            active: Yup.boolean()
+            active: Yup.boolean(),
+            user: Yup.object().shape({
+                id: Yup.number(),
+            })
         })
 
-        const data = await schema.validate(req.body, {abortEarly: false}) as Feed
+        const data = await schema.validate({...req.body, user: req.user}, {abortEarly: false}) as Feed
+        // data.user_id = req.user.id
 
         const feed = await feedRepository.create(data)
         await feedRepository.save(feed)
@@ -24,7 +28,7 @@ class FeedsController {
     async index(req: Request, res: Response) {
         const feedRepository = getRepository(Feed)
 
-        const feeds = await feedRepository.find()
+        const feeds = await feedRepository.find({where: {user_id: req.user.id}})
 
         return res.json({feeds: feedsView.renderMany(feeds)})
     }
@@ -34,7 +38,7 @@ class FeedsController {
 
         const feedRepository = getRepository(Feed)
 
-        const feed = await feedRepository.findOneOrFail(id)
+        const feed = await feedRepository.findOneOrFail({id: parseInt(id), user_id: req.user.id})
 
         return res.json({feed: feedsView.render(feed)})
     }
@@ -50,10 +54,10 @@ class FeedsController {
 
         const data = await schema.validate(req.body, {abortEarly: true}) as Feed
 
-        await feedRepository.update(id, data)
-        const feed = await feedRepository.findOneOrFail(id)
+        let feed = await feedRepository.findOneOrFail({id: parseInt(id), user_id: req.user.id})
+        await feedRepository.save({...feed, ...data})
 
-        return res.json({feed: feedsView.render(feed)})
+        return res.json({feed: feedsView.render({...feed, ...data})})
     }
 
     async destroy(req: Request, res: Response) {
@@ -61,7 +65,9 @@ class FeedsController {
         const feedRepository = getRepository(Feed)
 
         let deleted = true
-        await feedRepository.delete(id).catch(e => {
+        let feed = await feedRepository.findOneOrFail({id: parseInt(id), user_id: req.user.id})
+
+        await feedRepository.delete(feed).catch(e => {
             deleted = false
         })
 

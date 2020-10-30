@@ -10,7 +10,7 @@ export default class PasswordReset {
     @Column()
     token: string;
 
-    @Column()
+    @Column({default: null})
     used_at?: Date
 
     @CreateDateColumn()
