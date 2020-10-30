@@ -1,10 +1,10 @@
-import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
+import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class createFeeds1603244098883 implements MigrationInterface {
+export class createUsers1603244098881 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: 'feeds',
+            name: 'users',
             columns: [
                 {
                     name: 'id',
@@ -19,18 +19,12 @@ export class createFeeds1603244098883 implements MigrationInterface {
                     type: 'varchar'
                 },
                 {
-                    name: 'url',
+                    name: 'email',
                     type: 'varchar'
                 },
                 {
-                    name: 'active',
-                    type: 'boolean',
-                    default: true
-                },
-                {
-                    name: 'user_id',
-                    type: 'integer',
-                    unsigned: true,
+                    name: 'password',
+                    type: 'varchar'
                 },
                 {
                     name: 'created_at',
@@ -42,22 +36,10 @@ export class createFeeds1603244098883 implements MigrationInterface {
                 }
             ]
         }))
-
-        await queryRunner.createForeignKey(
-            'feeds',
-            new TableForeignKey({
-                name: 'feeds_user_fk',
-                columnNames: ['user_id'],
-                referencedTableName: 'users',
-                referencedColumnNames: ['id'],
-                onDelete: 'cascade',
-                onUpdate: 'cascade'
-            })
-        );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropForeignKey('feeds', 'feeds_user_fk')
-        await queryRunner.dropTable('feeds')
+        await queryRunner.dropTable('users')
     }
+
 }

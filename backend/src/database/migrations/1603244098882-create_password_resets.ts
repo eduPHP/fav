@@ -1,10 +1,10 @@
 import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
 
-export class createFeeds1603244098883 implements MigrationInterface {
+export class createPasswordResets1603244098882 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: 'feeds',
+            name: 'password_resets',
             columns: [
                 {
                     name: 'id',
@@ -15,38 +15,30 @@ export class createFeeds1603244098883 implements MigrationInterface {
                     generationStrategy: 'increment'
                 },
                 {
-                    name: 'name',
-                    type: 'varchar'
+                    name: 'token',
+                    type: 'varchar',
                 },
                 {
-                    name: 'url',
-                    type: 'varchar'
+                    name: 'used_at',
+                    type: 'datetime',
+                    isNullable: true
                 },
                 {
-                    name: 'active',
-                    type: 'boolean',
-                    default: true
+                    name: 'created_at',
+                    type: 'datetime',
                 },
                 {
                     name: 'user_id',
                     type: 'integer',
                     unsigned: true,
-                },
-                {
-                    name: 'created_at',
-                    type: 'datetime'
-                },
-                {
-                    name: 'updated_at',
-                    type: 'datetime'
                 }
             ]
         }))
 
         await queryRunner.createForeignKey(
-            'feeds',
+            'password_resets',
             new TableForeignKey({
-                name: 'feeds_user_fk',
+                name: 'pw_reset_user_fk',
                 columnNames: ['user_id'],
                 referencedTableName: 'users',
                 referencedColumnNames: ['id'],
@@ -57,7 +49,7 @@ export class createFeeds1603244098883 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropForeignKey('feeds', 'feeds_user_fk')
-        await queryRunner.dropTable('feeds')
+        await queryRunner.dropForeignKey('password_resets', 'pw_reset_user_fk')
+        await queryRunner.dropTable('password_resets')
     }
 }
