@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
+import {Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn} from 'typeorm'
+import User from "./User";
 
 @Entity('feeds')
 export default class Feed {
@@ -10,4 +11,8 @@ export default class Feed {
     url: string;
     @Column()
     active: boolean;
+
+    @ManyToOne(() => User, user => user.feeds)
+    @JoinColumn({name: 'user_id'})
+    user: User
 }
