@@ -67,7 +67,7 @@ class FeedsController {
         let deleted = true
         let feed = await feedRepository.findOneOrFail({id: parseInt(id), user_id: req.user.id})
 
-        await feedRepository.delete(feed).catch(e => {
+        await feedRepository.delete(feed.id).catch(e => {
             deleted = false
         })
 

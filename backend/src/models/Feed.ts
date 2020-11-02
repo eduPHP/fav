@@ -1,4 +1,12 @@
-import {Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn} from 'typeorm'
+import {
+    Entity,
+    Column,
+    PrimaryGeneratedColumn,
+    ManyToOne,
+    JoinColumn,
+    CreateDateColumn,
+    UpdateDateColumn
+} from 'typeorm'
 import User from "./User";
 
 @Entity('feeds')
@@ -13,6 +21,12 @@ export default class Feed {
     active: boolean;
     @Column()
     user_id: number;
+
+    @CreateDateColumn()
+    created_at: Date
+
+    @UpdateDateColumn()
+    updated_at: Date
 
     @ManyToOne(() => User, user => user.feeds)
     @JoinColumn({name: 'user_id'})

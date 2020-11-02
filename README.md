@@ -19,13 +19,14 @@ I will create an [issue](https://github.com/swalker2/node-rss-reader/issues) for
 - [x] Remove rss links
 - [x] Read rss from saved link
 - [x] add validation
-- [ ] add user authentication
-  - [ ] register user
-  - [ ] login user
-  - [ ] password recover
-  - [ ] get user profile
+- [x] add user authentication
+  - [x] register user
+  - [x] login user
+  - [x] password recover
+  - [x] get user profile
   - [ ] update user
-- [ ] protect routes
+- [x] protect routes
+- [ ] show public feeds for not logged in users
 
 ### Frontend requirements
 - [ ] user login and register
