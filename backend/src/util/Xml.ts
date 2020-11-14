@@ -16,6 +16,7 @@ export default {
         return {
             title: channel.title,
             link: channel.link,
+            updatedAt: new Date().toLocaleString(),
             item: channel.item.map((item: Item) => {
                 return {
                     title: item.title,

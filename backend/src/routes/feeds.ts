@@ -2,7 +2,6 @@ import {Router} from "express";
 import FeedsController from '../controllers/FeedsController'
 import RssReaderController from '../controllers/RssReaderController'
 import AuthorizeUsers from "../middleware/AuthorizeUsers";
-import cached from "../middleware/CacheResponse";
 
 const router = Router()
 
@@ -16,6 +15,6 @@ router.put('/feeds/:id', FeedsController.update)
 router.delete('/feeds/:id', FeedsController.destroy)
 
 // RSS Reader
-router.get('/feeds/:id/list', cached(1), RssReaderController.index)
+router.get('/feeds/:id/list', RssReaderController.index)
 
 export default router

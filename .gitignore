@@ -3,3 +3,4 @@
 **/.idea
 **/yarn-error.log
 **/.env
+backend/cache/*
