@@ -1,11 +1,12 @@
-import {Router} from "express"
+import { Router } from 'express'
 
-import PasswordsResetController from "../controllers/PasswordsResetController"
-import RegisterController from "../controllers/RegisterController"
-import ProfileController from "../controllers/ProfileController"
-import LoginController from "../controllers/LoginController"
+import PasswordsResetController from '../controllers/PasswordsResetController'
+import RegisterController from '../controllers/RegisterController'
+import ProfileController from '../controllers/ProfileController'
+import LoginController from '../controllers/LoginController'
 
-import AuthorizeUsers from "../middleware/AuthorizeUsers"
+import AuthorizeUsers from '../middleware/AuthorizeUsers'
+
 const router = Router()
 
 router.post('/auth/register', RegisterController.store)

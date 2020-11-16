@@ -17,7 +17,6 @@ app.use('/api', ...routes)
 
 app.use(errorHandler)
 
-app.listen(
-    config.app.port,
-    () => console.log('Server is ready at http://localhost:' + config.app.port)
+app.listen(config.app.port, () =>
+  console.log(`Server is ready at http://localhost:${config.app.port}`),
 )

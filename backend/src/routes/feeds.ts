@@ -1,7 +1,7 @@
-import {Router} from "express";
+import { Router } from 'express'
 import FeedsController from '../controllers/FeedsController'
 import RssReaderController from '../controllers/RssReaderController'
-import AuthorizeUsers from "../middleware/AuthorizeUsers";
+import AuthorizeUsers from '../middleware/AuthorizeUsers'
 
 const router = Router()
 
