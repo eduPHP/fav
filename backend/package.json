@@ -21,7 +21,7 @@
     "yup": "^0.29.3"
   },
   "scripts": {
-    "start": "ts-node-dev --transpile-only --ignore-watch node_modules src/index.ts",
+    "dev:server": "ts-node-dev --transpile-only --ignore-watch node_modules src/index.ts",
     "orm": "ts-node-dev ./node_modules/typeorm/cli.js"
   },
   "devDependencies": {

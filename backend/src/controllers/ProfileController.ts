@@ -5,7 +5,7 @@ import users_view from '../views/users_view'
 import User from '../models/User'
 
 export default {
-  async show(req: Request, res: Response) {
+  async show(req: Request, res: Response): Promise<Response> {
     const repo = getRepository(User)
     const user = await repo.findOneOrFail(req.user.id)
 

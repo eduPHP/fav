@@ -4,13 +4,20 @@ const parser = new xml2js.Parser({ explicitArray: false })
 
 interface Item {
   title: string
-  author: string
+  author: string | null
   link: string
   pubDate: string
 }
 
+export interface FeedListInterface {
+  title: string
+  link: string
+  updatedAt: string
+  item: Item[]
+}
+
 export default {
-  async parse(xml: any) {
+  async parse(xml: string): Promise<FeedListInterface> {
     const parsed = await parser.parseStringPromise(xml)
     const { channel } = parsed.rss
     return {

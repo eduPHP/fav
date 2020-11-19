@@ -8,7 +8,7 @@ import bcrypt from '../util/bcrypt'
 import User from '../models/User'
 
 export default {
-  async store(req: Request, res: Response) {
+  async store(req: Request, res: Response): Promise<Response> {
     const repo = getRepository(User)
 
     const schema = Yup.object().shape({

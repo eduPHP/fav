@@ -15,7 +15,7 @@ interface RequestProps {
 }
 
 export default {
-  async store(req: Request, res: Response) {
+  async store(req: Request, res: Response): Promise<Response> {
     const schema = Yup.object().shape({
       email: Yup.string().email().required(),
       base: Yup.string().nullable(),
@@ -57,7 +57,7 @@ export default {
     return res.json({ sent: result.rejected.length === 0 })
   },
 
-  async update(req: Request, res: Response) {
+  async update(req: Request, res: Response): Promise<Response> {
     const { password, token } = req.body
     const [resetId, rawToken] = token.split('.')
     const userRepo = getRepository(User)

@@ -5,7 +5,7 @@ import Feed from '../models/Feed'
 import feedsView from '../views/feeds'
 
 class FeedsController {
-  async store(req: Request, res: Response) {
+  async store(req: Request, res: Response): Promise<Response> {
     const feedRepository = getRepository(Feed)
     const schema = Yup.object().shape({
       name: Yup.string().required(),
@@ -28,7 +28,7 @@ class FeedsController {
     return res.status(201).json({ feed: feedsView.render(feed) })
   }
 
-  async index(req: Request, res: Response) {
+  async index(req: Request, res: Response): Promise<Response> {
     const feedRepository = getRepository(Feed)
 
     const feeds = await feedRepository.find({ where: { user_id: req.user.id } })
@@ -36,7 +36,7 @@ class FeedsController {
     return res.json({ feeds: feedsView.renderMany(feeds) })
   }
 
-  async show(req: Request, res: Response) {
+  async show(req: Request, res: Response): Promise<Response> {
     const { id } = req.params
 
     const feedRepository = getRepository(Feed)
@@ -49,7 +49,7 @@ class FeedsController {
     return res.json({ feed: feedsView.render(feed) })
   }
 
-  async update(req: Request, res: Response) {
+  async update(req: Request, res: Response): Promise<Response> {
     const { id } = req.params
     const feedRepository = getRepository(Feed)
     const schema = Yup.object().shape({
@@ -69,7 +69,7 @@ class FeedsController {
     return res.json({ feed: feedsView.render({ ...feed, ...data }) })
   }
 
-  async destroy(req: Request, res: Response) {
+  async destroy(req: Request, res: Response): Promise<Response> {
     const { id } = req.params
     const feedRepository = getRepository(Feed)
 
