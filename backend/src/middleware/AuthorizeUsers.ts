@@ -5,17 +5,23 @@ import { promisify } from 'util'
 
 import User, { UserView } from '../models/User'
 import users_view from '../views/users_view'
-import config from '../util/config'
+import { app } from '../util/config'
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Express {
+    // eslint-disable-next-line no-shadow
     export interface Request {
       user: UserView
     }
   }
 }
 
-export default async (req: Request, res: Response, next: CallableFunction) => {
+export default async (
+  req: Request,
+  res: Response,
+  next: CallableFunction,
+): Promise<Response> => {
   const authHeader = req.headers.authorization
 
   if (!authHeader) {
@@ -25,7 +31,7 @@ export default async (req: Request, res: Response, next: CallableFunction) => {
   const [, token] = authHeader.split('Bearer ')
 
   try {
-    const id = (await promisify(jwt.verify)(token, config.app.key)) as string
+    const id = (await promisify(jwt.verify)(token, app.key)) as string
     const repo = getRepository(User)
     const user = await repo.findOneOrFail(id)
     req.user = users_view.render(user)

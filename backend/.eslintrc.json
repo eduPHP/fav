@@ -25,6 +25,7 @@
     "@typescript-eslint/camelcase": "off",
     "no-unused-vars": "off",
     "camelcase": "off",
+    "no-console": "off",
     "semi": [
       2,
       "never"

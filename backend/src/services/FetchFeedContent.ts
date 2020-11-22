@@ -1,6 +1,6 @@
 import axios from 'axios'
 import Feed from '../models/Feed'
-import Xml, { FeedListInterface } from '../util/Xml'
+import ParseXmlFeedContent, { FeedListInterface } from './ParseXmlFeedContent'
 import Cache from '../util/cache'
 
 const cache = Cache('file')
@@ -13,7 +13,7 @@ export default class {
 
     if (cachedContent) {
       axios.get(feed.url).then(async response => {
-        const content = await Xml.parse(response.data)
+        const content = await ParseXmlFeedContent.parse(response.data)
         await cache.put(key, content, 1)
       })
 
@@ -21,7 +21,7 @@ export default class {
     }
 
     return axios.get(feed.url).then(async response => {
-      const parsedContent = await Xml.parse(response.data)
+      const parsedContent = await ParseXmlFeedContent.parse(response.data)
       await cache.put(key, parsedContent, 1)
 
       return parsedContent
