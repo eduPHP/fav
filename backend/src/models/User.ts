@@ -36,7 +36,7 @@ export default class User {
   updated_at: Date
 
   @OneToMany(() => Feed, feed => feed.user, {
-    cascade: ['insert', 'update'],
+    cascade: ['insert', 'update', 'remove'],
   })
   @JoinColumn({ name: 'user_id' })
   feeds: Feed[]

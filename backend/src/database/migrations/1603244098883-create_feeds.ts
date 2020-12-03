@@ -56,8 +56,8 @@ export class createFeeds1603244098883 implements MigrationInterface {
         columnNames: ['user_id'],
         referencedTableName: 'users',
         referencedColumnNames: ['id'],
-        onDelete: 'cascade',
-        onUpdate: 'cascade',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       }),
     )
   }
