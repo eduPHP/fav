@@ -1,14 +1,26 @@
-import React from 'react'
+import { GetServerSideProps } from 'next';
+import { FeedsList } from './api/feeds';
+import Link from 'next/link';
 
-const Index: React.FC = () => {
+export default function Home({ feeds }: FeedsList) {
   return (
-    <ul>
-      <li>Primeiro o login</li>
-      <li>Obter lista de feeds cadastrados</li>
-      <li>Cadastrar um feed</li>
-      <li>Editar um feed</li>
-    </ul>
-  )
+    <div>
+      <h1 className="bg-green-500">RSS!</h1>
+      {feeds.map(feed => (
+        <div key={feed.id}>
+          <span>{feed.name}</span>
+          <span>{feed.url}</span>
+          <Link href={`/feeds/${feed.id}`}>Edit</Link>
+        </div>
+      ))}
+    </div>
+  );
 }
 
-export default Index
+export const getServerSideProps: GetServerSideProps = async () => {
+  const response = await fetch(`${process.env.API_URL}/feeds`);
+  const { feeds } = await response.json();
+  return {
+    props: { feeds },
+  };
+};
