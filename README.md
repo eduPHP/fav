@@ -31,8 +31,8 @@ I will create an [issue](https://github.com/swalker2/node-rss-reader/issues) for
 ### Frontend requirements
 - [ ] user login and register
 - [ ] password recover
-- [ ] Save rss links
-- [ ] List rss links
-- [ ] Edit rss links
+- [x] Save rss links
+- [x] List rss links
+- [x] Edit rss links
 - [ ] Remove rss links
 - [ ] List rss using react (more details when backend is done)
