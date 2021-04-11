@@ -34,5 +34,5 @@ I will create an [issue](https://github.com/swalker2/node-rss-reader/issues) for
 - [x] Save rss links
 - [x] List rss links
 - [x] Edit rss links
-- [ ] Remove rss links
-- [ ] List rss using react (more details when backend is done)
+- [x] Remove rss links
+- [x] List rss using react

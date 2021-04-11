@@ -7,7 +7,7 @@ export function Header() {
       <div className="flex justify-between items-center px-6 py-4 max-w-[50rem] mx-auto">
         <Link href={'/'}>
           <a>
-            <h1 className="text-gray-200 text-3xl font-bold flex items-center">
+            <h1 className="text-gray-300 text-3xl font-bold flex items-center">
               <svg className="w-10 h-10 fill-current mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 124 124">
                 <circle cx="20.3" cy="103.749" r="20"/>
                 <path

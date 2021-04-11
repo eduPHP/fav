@@ -3,14 +3,15 @@ import md5 from 'md5'
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 export default function UserMenu() {
-  const [isOpen, setIsOpen] = useState<Boolean>(false)
-  const ref = useRef(null);
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const ref = useRef(null)
+  const menuRef = useRef(null)
 
   const handleClickOutside = (event) => {
     if (ref.current && !ref.current.contains(event.target)) {
       setIsOpen(false);
     }
-    if (ref.current && ref.current.contains(event.target)){
+    if (menuRef.current && menuRef.current.contains(event.target)){
       setTimeout(() => setIsOpen(false), 500)
     }
   };
@@ -24,12 +25,13 @@ export default function UserMenu() {
 
   const toggleUserMenu = useCallback(() => {
     setIsOpen(!isOpen)
-  }, [setIsOpen, isOpen])
+  }, [isOpen])
 
   return (
-    <div className="relative z-10">
+    <div className="relative text-gray-300" ref={ref}>
       <div className="flex items-center cursor-pointer select-none" onClick={toggleUserMenu}>
-        <span className="mr-2 text-gray-200">Eduardo F.</span>
+        <svg className={`fill-current w-3 h-3 mr-1.5 ${isOpen && 'transform rotate-180'}`} viewBox="0 0 515.556 515.556" xmlns="http://www.w3.org/2000/svg"><path d="M257.778 386.671L0 128.893h128.886l128.892 128.889 128.886-128.897 128.892.008z"/></svg>
+        <span className="mr-2">Eduardo F.</span>
         <img src={`https://www.gravatar.com/avatar/${md5('edu@rdo.blog.br')}?d=mp&s=80`} className="w-10 h-10 rounded-full" alt="Eduardo f"/>
       </div>
       <ul
@@ -37,14 +39,13 @@ export default function UserMenu() {
           `bg-gray-700 p-3 rounded shadow-lg absolute w-48 right-0 top-11 grid gap-3 text-right
           ${isOpen ? 'block' : 'hidden'}`
         }
-        ref={ref}
+        ref={menuRef}
       >
         <li>
-          <Link href={'/feeds'}>
-            <a className="text-gray-200">Edit RSS Feeds</a>
-          </Link>
+          <Link href={'/feeds'}>Edit RSS Feeds</Link>
         </li>
-        <li className="text-gray-200 border-t border-gray-500 pt-2">Sair</li>
+        <li className="border-t border-gray-600 -mx-3" />
+        <li className="cursor-pointer">Logout</li>
       </ul>
     </div>
   )

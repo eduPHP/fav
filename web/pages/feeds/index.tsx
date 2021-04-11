@@ -40,7 +40,7 @@ export default function Home() {
       </Head>
       <div>
         <Link href={'/feeds/create'}>
-          <a className="rounded bg-indigo-600 px-6 py-2 text-gray-200">Create</a>
+          <a className="rounded bg-indigo-600 px-6 py-2 text-gray-300">Create</a>
         </Link>
         <ul className="mt-6 divide-y divide-gray-500 rounded-lg shadow bg-gray-600">
           {loading && (

@@ -67,7 +67,7 @@ export default function CreateFeed() {
           <Toggle name="active" type="checkbox"/>
           <span className="ml-2 text-gray-300">Active</span>
         </label>
-        <button type="submit" className="rounded bg-indigo-600 px-6 py-4 text-gray-200 w-full">Save</button>
+        <button type="submit" className="rounded bg-indigo-600 px-6 py-4 text-gray-300 w-full">Save</button>
       </Form>
     </div>
   );
