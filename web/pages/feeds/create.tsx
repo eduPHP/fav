@@ -4,8 +4,8 @@ import Head from 'next/head';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
-import Input from '../../components/Input';
-import Toggle from '../../components/Toggle';
+import Input from '../../components/Form/Input';
+import Toggle from '../../components/Form/Toggle';
 import getValidationErrors from '../../util/getValidationErrors';
 import { useToast } from '../../hooks/toasts';
 import api from '../../services/api';
