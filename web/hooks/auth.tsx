@@ -1,4 +1,6 @@
-import React, { createContext, useCallback, useContext, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import Router from 'next/router';
+import Cookie from 'universal-cookie';
 import api from '../services/api';
 
 interface SignInCredentials {
@@ -18,30 +20,34 @@ interface AuthState {
 
 interface AuthContextInterface {
   user: AuthUser;
-  signIn(credentials: SignInCredentials): void;
+  signIn(credentials: SignInCredentials): Promise<AuthState>;
   signOut(): void;
   setToken(auth: AuthState): void;
 }
 const Auth = createContext<AuthContextInterface>({} as AuthContextInterface);
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [data, setData] = useState<AuthState>(() => {
-    const token = localStorage.getItem('@goBarber:token');
-    const user = localStorage.getItem('@goBarber:user');
+  const [data, setData] = useState<AuthState>({} as AuthState);
+  useEffect(() => {
+    ;(async () => {
+      const cookie = new Cookie();
+      const token = cookie.get<string>('@edu/rss-reader:token');
+      const user = cookie.get<AuthUser>('@edu/rss-reader:user');
 
-    if (token && user) {
-      return {
-        token,
-        user: JSON.parse(user),
-      };
-    }
-
-    return {} as AuthState;
-  });
+      if (token && user) {
+        setData({
+          token,
+          user,
+        });
+        api.defaults.headers['Authorization'] = `Bearer ${token}`
+      }
+    })()
+  }, []);
 
   const setToken = useCallback(async ({ user, token }): Promise<void> => {
-    localStorage.setItem('@goBarber:token', token);
-    localStorage.setItem('@goBarber:user', JSON.stringify(user));
+    const cookie = new Cookie();
+    cookie.set('@edu/rss-reader:token', token, { secure: false });
+    cookie.set('@edu/rss-reader:user', user, { secure: false });
 
     setData({
       token,
@@ -50,16 +56,18 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const signIn = useCallback(
-    async ({ email, password }): Promise<void> => {
-      const response = await api.post('sessions', { email, password });
+    async ({ email, password }): Promise<AuthState> => {
+      const response = await api.post<AuthState>('auth/login', { email, password });
       await setToken(response.data);
+      return response.data
     },
     [setToken],
   );
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('@goBarber:token');
-    localStorage.removeItem('@goBarber:user');
+    const cookie = new Cookie();
+    cookie.remove('@edu/rss-reader:token');
+    cookie.remove('@edu/rss-reader:user');
     setData({} as AuthState);
   }, []);
 
@@ -70,12 +78,20 @@ export const AuthProvider: React.FC = ({ children }) => {
   );
 };
 
-export function useAuth(): AuthContextInterface {
-  const ctx = useContext(Auth);
+interface AuthConfig {
+  redirectTo?: string
+}
 
-  if (!ctx) {
-    throw new Error('useAuth must be used within an AuthProvider');
+export function useAuth(config: AuthConfig = {}): AuthContextInterface {
+  const context = useContext(Auth)
+
+  if (!context.user && config.redirectTo) {
+    try {
+      Router.push(config.redirectTo)
+    } catch {
+      //
+    }
   }
 
-  return ctx;
+  return context;
 }

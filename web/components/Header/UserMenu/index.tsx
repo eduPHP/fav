@@ -6,6 +6,10 @@ export default function UserMenu() {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const ref = useRef(null)
   const menuRef = useRef(null)
+  const user = {
+    name: 'Edu',
+    email: 'edu@rdo.blog.br'
+  }
 
   const handleClickOutside = (event) => {
     if (ref.current && !ref.current.contains(event.target)) {
@@ -31,8 +35,8 @@ export default function UserMenu() {
     <div className="relative text-gray-300" ref={ref}>
       <div className="flex items-center cursor-pointer select-none" onClick={toggleUserMenu}>
         <svg className={`fill-current w-3 h-3 mr-1.5 ${isOpen && 'transform rotate-180'}`} viewBox="0 0 515.556 515.556" xmlns="http://www.w3.org/2000/svg"><path d="M257.778 386.671L0 128.893h128.886l128.892 128.889 128.886-128.897 128.892.008z"/></svg>
-        <span className="mr-2">Eduardo F.</span>
-        <img src={`https://www.gravatar.com/avatar/${md5('edu@rdo.blog.br')}?d=mp&s=80`} className="w-10 h-10 rounded-full" alt="Eduardo f"/>
+        <span className="mr-2">{user.name}</span>
+        <img src={`https://www.gravatar.com/avatar/${md5(user.email)}?d=mp&s=80`} className="w-10 h-10 rounded-full" alt="Eduardo f"/>
       </div>
       <ul
         className={

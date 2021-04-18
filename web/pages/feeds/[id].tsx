@@ -36,7 +36,7 @@ export default function Edit({ feed }) {
         description: `Feed <span class="font-bold">${data.name}</span> atualizado com sucesso.`,
       });
 
-      await route.push('/')
+      await route.push('/feeds')
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         formRef.current.setErrors(getValidationErrors(err));

@@ -1,12 +1,14 @@
 import React from 'react';
 
-import { AuthProvider } from './auth';
 import { ToastsProvider } from './toasts';
+import { DialogProvider } from './dialog';
 
 const AppProvider: React.FC = ({ children }) => (
-  // <AuthProvider>
-    <ToastsProvider>{children}</ToastsProvider>
-  // </AuthProvider>
+  <DialogProvider>
+    <ToastsProvider>
+      {children}
+    </ToastsProvider>
+  </DialogProvider>
 );
 
 export default AppProvider;
