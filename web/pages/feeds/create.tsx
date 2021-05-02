@@ -10,10 +10,11 @@ import getValidationErrors from '../../util/getValidationErrors';
 import { useToast } from '../../hooks/toasts';
 import api from '../../services/api';
 import { useRouter } from 'next/router';
+import Button from '../../components/Form/Button';
 
 interface FeedFormData extends Feed {}
 
-export default function CreateFeed() {
+const CreateFeed = () => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const router = useRouter();
@@ -23,8 +24,8 @@ export default function CreateFeed() {
       try {
         formRef.current.setErrors({});
         const schema = Yup.object().shape({
-          name: Yup.string().required('Nome Obrigatório'),
-          url: Yup.string().url('URL invãlida').required('URL obrigatória'),
+          name: Yup.string().required('Name is required.'),
+          url: Yup.string().url('Invalid URL.').required('URL required.'),
         });
 
         await schema.validate(data, { abortEarly: false });
@@ -41,7 +42,7 @@ export default function CreateFeed() {
           formRef.current.setErrors(getValidationErrors(err));
         } else {
           addToast({
-            title: 'Cadastro falhou.',
+            title: 'Failed.',
             type: 'error',
             description: err.response?.data.message || null,
           });
@@ -77,13 +78,12 @@ export default function CreateFeed() {
           <Toggle name="active" type="checkbox" />
           <span className="ml-2 text-gray-300">Active</span>
         </label>
-        <button
-          type="submit"
-          className="rounded bg-blue-400 px-6 py-4 text-blue-900 w-full"
-        >
+        <Button type="submit" className="bg-blue-400 text-blue-900">
           Save
-        </button>
+        </Button>
       </Form>
     </div>
   );
-}
+};
+
+export default CreateFeed;

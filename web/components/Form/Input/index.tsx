@@ -46,7 +46,10 @@ export default function Input({ name, focused, ...rest }: InputProps) {
         {...rest}
         className={`
            ${rest.className}
-           bg-gray-100 rounded px-4 py-4 w-full bg-gray-300 focus:outline-none focus:ring-4 focus:ring-indigo-500
+           bg-gray-100 text-gray-700 rounded px-4 py-4 w-full bg-gray-300
+           focus:outline-none
+           focus:ring-4
+           focus:ring-gray-500
            ${error && 'bg-red-200'}
        `}
       />

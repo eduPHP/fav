@@ -13,7 +13,7 @@ import { useRouter } from 'next/router';
 
 interface FeedFormData extends Feed {}
 
-export default function Edit({ feed }) {
+const Edit = ({ feed }) => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const route = useRouter();
@@ -87,7 +87,7 @@ export default function Edit({ feed }) {
       </Form>
     </div>
   );
-}
+};
 
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { id } = query;
@@ -97,3 +97,5 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     props: { feed },
   };
 };
+
+export default Edit;
