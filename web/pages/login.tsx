@@ -71,7 +71,7 @@ export default function Login() {
   return (
     <div className="flex flex-col max-w-md mx-auto">
       <Head>
-        <title>Create Feed Entry | RSS</title>
+        <title>Login | RSS</title>
       </Head>
       <h1 className="text-2xl mb-4 text-gray-300 font-bold">Login</h1>
       <Form
