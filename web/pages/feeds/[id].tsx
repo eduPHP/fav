@@ -24,8 +24,10 @@ const Edit = ({ feed }) => {
       try {
         formRef.current.setErrors({});
         const schema = Yup.object().shape({
-          name: Yup.string().required('Nome Obrigatório'),
-          url: Yup.string().url('URL invãlida').required('URL obrigatória'),
+          name: Yup.string().required('Name is requried.'),
+          url: Yup.string()
+            .url('Invalid URL format.')
+            .required('URL is requried.'),
         });
 
         await schema.validate(data, { abortEarly: false });
@@ -33,9 +35,9 @@ const Edit = ({ feed }) => {
         await api.put(`/feeds/${feed.id}`, data);
 
         addToast({
-          title: `Feed atualizado.`,
+          title: `Feed updated.`,
           type: 'success',
-          description: `Feed <span class="font-bold">${data.name}</span> atualizado com sucesso.`,
+          description: `Feed <span class="font-bold">${data.name}</span> successfully updated.`,
         });
 
         await route.push('/feeds');
@@ -44,7 +46,7 @@ const Edit = ({ feed }) => {
           formRef.current.setErrors(getValidationErrors(err));
         } else {
           addToast({
-            title: 'Cadastro falhou.',
+            title: 'Feed creation failed.',
             type: 'error',
             description: err.response?.data.message || null,
           });
@@ -95,8 +97,8 @@ export const getServerSideProps: GetServerSideProps = async ({
   req,
 }) => {
   const { id } = query;
-  const { token } = authenticated({ req });
-  api.defaults.headers['Authorization'] = `Bearer ${token}`;
+  // const { token } = authenticated({ req });
+  // api.defaults.headers['Authorization'] = `Bearer ${token}`;
 
   const response = await api.get(`/feeds/${id}`);
   const { feed } = response.data;

@@ -23,7 +23,7 @@ export function Header() {
             </h1>
           </a>
         </Link>
-        {authenticated && <UserMenu />}
+        {authenticated ? <UserMenu /> : <Link href="/login">REGISTER</Link>}
       </div>
     </div>
   );

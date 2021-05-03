@@ -7,10 +7,12 @@ import { useToast } from '../hooks/toasts';
 import * as Yup from 'yup';
 import getValidationErrors from '../util/getValidationErrors';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { useAuth } from '../hooks/auth';
 import Button from '../components/Form/Button';
 
-interface LoginData {
+interface RegisterData {
+  name: string;
   email: string;
   password: string;
 }
@@ -21,28 +23,29 @@ interface UserData {
   };
 }
 
-const Login = () => {
+const Register = () => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const router = useRouter();
-  const { signIn } = useAuth();
+  const { signIn, signUp } = useAuth();
 
-  const handleLogin = useCallback(
-    async (data: LoginData) => {
+  const handleRegister = useCallback(
+    async (data: RegisterData) => {
       try {
         formRef.current.setErrors({});
         const schema = Yup.object().shape({
+          name: Yup.string().required('Name is required.'),
           email: Yup.string()
-            .required('Email is requried.')
+            .required('Email is required.')
             .email('Invalid email format.'),
           password: Yup.string()
-            .min(6, 'Minimum 6 characters.')
-            .required('Password id requried.'),
+            .min(6, 'Minimum of 6 character')
+            .required('Password is requried.'),
         });
 
         await schema.validate(data, { abortEarly: false });
 
-        const response = await signIn(data);
+        const response = await signUp(data);
 
         addToast({
           title: 'Success',
@@ -56,7 +59,7 @@ const Login = () => {
           formRef.current.setErrors(getValidationErrors(err));
         } else {
           addToast({
-            title: 'Login failed.',
+            title: 'Registration failed.',
             type: 'error',
             description: err.response?.data.message || null,
           });
@@ -70,29 +73,36 @@ const Login = () => {
   return (
     <div className="flex flex-col max-w-md mx-auto">
       <Head>
-        <title>Login | RSS</title>
+        <title>Register | RSS</title>
       </Head>
-      <h1 className="text-2xl mb-4 text-gray-300 font-bold">Login</h1>
+      <h1 className="text-2xl mb-4 text-gray-300 font-bold">Registration</h1>
       <Form
         className="rounded-lg shadow bg-gray-600 py-6 px-8"
         ref={formRef}
-        onSubmit={handleLogin}
+        onSubmit={handleRegister}
         initialData={{ active: true }}
       >
         <label className="block mb-2 w-full">
+          <span className="block text-gray-300 mb-2">Name</span>
+          <Input name="name" focused />
+        </label>
+
+        <label className="block mb-2 w-full">
           <span className="block text-gray-300 mb-2">Email</span>
-          <Input name="email" focused type="email" />
+          <Input name="email" type="email" />
         </label>
         <label className="block mb-8 w-full">
           <span className="block text-gray-300 mb-2">Password</span>
           <Input name="password" type="password" />
         </label>
         <Button type="submit" className="bg-blue-400 text-blue-100">
-          Login
+          Register
         </Button>
       </Form>
+
+      <Link href="/login">Back to login</Link>
     </div>
   );
 };
 
-export default Login;
+export default Register;

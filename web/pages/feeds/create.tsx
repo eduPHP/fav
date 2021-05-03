@@ -26,7 +26,9 @@ const CreateFeed = () => {
         formRef.current.setErrors({});
         const schema = Yup.object().shape({
           name: Yup.string().required('Name is required.'),
-          url: Yup.string().url('Invalid URL.').required('URL required.'),
+          url: Yup.string()
+            .url('Invalid URL format.')
+            .required('URL is required.'),
         });
 
         await schema.validate(data, { abortEarly: false });
@@ -43,7 +45,7 @@ const CreateFeed = () => {
           formRef.current.setErrors(getValidationErrors(err));
         } else {
           addToast({
-            title: 'Failed.',
+            title: 'Resource creation failed.',
             type: 'error',
             description: err.response?.data.message || null,
           });

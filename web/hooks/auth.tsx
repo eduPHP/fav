@@ -15,6 +15,12 @@ interface SignInCredentials {
   password: string;
 }
 
+interface SignUpCredentials {
+  name: string;
+  email: string;
+  password: string;
+}
+
 interface AuthUser {
   name: string;
   email: string;
@@ -30,6 +36,8 @@ interface AuthContextInterface {
   user: AuthUser;
 
   signIn(credentials: SignInCredentials): Promise<AuthState>;
+
+  signUp(credentials: SignUpCredentials): Promise<AuthState>;
 
   signOut(): void;
 
@@ -80,6 +88,19 @@ export const AuthProvider: React.FC = ({ children }) => {
     [setToken],
   );
 
+  const signUp = useCallback(
+    async ({ name, email, password }): Promise<AuthState> => {
+      const response = await api.post<AuthState>('auth/register', {
+        name,
+        email,
+        password,
+      });
+      await setToken(response.data);
+      return response.data;
+    },
+    [setToken],
+  );
+
   const signOut = useCallback(() => {
     const cookie = new Cookie();
     cookie.remove('@edu/rss-reader:token');
@@ -94,6 +115,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         authenticated: !!data.user,
         user: data.user,
         signIn,
+        signUp,
         signOut,
         setToken,
       }}
