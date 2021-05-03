@@ -1,12 +1,10 @@
 import Head from 'next/head';
 import { Form } from '@unform/web';
 import Input from '../components/Form/Input';
-import Toggle from '../components/Form/Toggle';
 import { useCallback, useRef } from 'react';
 import { FormHandles } from '@unform/core';
 import { useToast } from '../hooks/toasts';
 import * as Yup from 'yup';
-import api from '../services/api';
 import getValidationErrors from '../util/getValidationErrors';
 import { useRouter } from 'next/router';
 import { useAuth } from '../hooks/auth';
@@ -23,7 +21,7 @@ interface UserData {
   };
 }
 
-export default function Login() {
+const Login = () => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const router = useRouter();
@@ -62,6 +60,7 @@ export default function Login() {
             type: 'error',
             description: err.response?.data.message || null,
           });
+          console.error(err);
         }
       }
     },
@@ -94,4 +93,6 @@ export default function Login() {
       </Form>
     </div>
   );
-}
+};
+
+export default Login;

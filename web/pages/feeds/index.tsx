@@ -4,12 +4,13 @@ import Head from 'next/head';
 import { useToast } from '../../hooks/toasts';
 import { useCallback, useEffect, useState } from 'react';
 import { useDialog } from '../../hooks/dialog';
+import { authenticated } from '../../hooks/auth';
 
 type FeedsList = {
   feeds: Feed[];
 };
 
-export default function Home() {
+const ProvidersList = () => {
   const { addToast } = useToast();
   const { showDialog } = useDialog();
   const [feeds, setFeeds] = useState([]);
@@ -41,24 +42,6 @@ export default function Home() {
             type: 'success',
             description: `Feed removed successfully.`,
           });
-        },
-      });
-    },
-    [addToast],
-  );
-
-  const handleYOLO = useCallback(
-    async (type: 'success' | 'danger' | 'info') => {
-      showDialog({
-        title: 'Delete RSS Feed',
-        description:
-          'If you choose to continue, this action will be permanent.',
-        type,
-        options: {
-          confirm: 'Delete',
-        },
-        async action() {
-          console.log('Olá mundo uiashdiasdk!!');
         },
       });
     },
@@ -140,4 +123,11 @@ export default function Home() {
       </div>
     </>
   );
-}
+};
+
+ProvidersList.getInitialProps = async ctx => {
+  const { token } = await authenticated(ctx);
+  return { token };
+};
+
+export default ProvidersList;

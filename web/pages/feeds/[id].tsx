@@ -10,6 +10,7 @@ import getValidationErrors from '../../util/getValidationErrors';
 import { useToast } from '../../hooks/toasts';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { authenticated } from '../../hooks/auth';
 
 interface FeedFormData extends Feed {}
 
@@ -89,8 +90,14 @@ const Edit = ({ feed }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  query,
+  req,
+}) => {
   const { id } = query;
+  const { token } = authenticated({ req });
+  api.defaults.headers['Authorization'] = `Bearer ${token}`;
+
   const response = await api.get(`/feeds/${id}`);
   const { feed } = response.data;
   return {

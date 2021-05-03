@@ -11,6 +11,7 @@ import { useToast } from '../../hooks/toasts';
 import api from '../../services/api';
 import { useRouter } from 'next/router';
 import Button from '../../components/Form/Button';
+import { authenticated } from '../../hooks/auth';
 
 interface FeedFormData extends Feed {}
 
@@ -36,7 +37,7 @@ const CreateFeed = () => {
           type: 'success',
           description: `Feed ${data.name} created successfully!`,
         });
-        await router.push('/');
+        await router.push('/feeds');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           formRef.current.setErrors(getValidationErrors(err));
@@ -84,6 +85,11 @@ const CreateFeed = () => {
       </Form>
     </div>
   );
+};
+
+CreateFeed.getInitialProps = async ctx => {
+  const { token } = authenticated(ctx);
+  return { token };
 };
 
 export default CreateFeed;

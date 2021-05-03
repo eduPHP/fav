@@ -7,9 +7,10 @@ interface AtomFeedItem {
   title: string
   summary: string | null
   author: string | null
-  link: {$: { href: string }}
+  link: { $: { href: string } }
   pubDate: string
 }
+
 interface RssFeedItem {
   title: string
   description: string | null
@@ -25,6 +26,7 @@ interface AtomFeed {
     link: string
   }
 }
+
 interface RssFeed {
   rss: {
     channel: {
@@ -39,7 +41,7 @@ export interface FeedItem {
   title: string
   description: string | null
   author: string | null
-  link: string | {$: { href: string }}
+  link: string | { $: { href: string } }
   pubDate: Date
   icon?: string
 }
@@ -71,7 +73,7 @@ export default {
       link: channel.link,
       updatedAt: new Date().toLocaleString(),
       item: items.map((item: AtomFeedItem) => {
-        let description = this.normalizeDescription(item.summary)
+        const description = this.normalizeDescription(item.summary)
 
         return {
           title: item.title,
@@ -85,7 +87,7 @@ export default {
   },
 
   parseRss(parsed: RssFeed): FeedListInterface {
-    const channel = parsed.rss.channel
+    const { channel } = parsed.rss
     const items = channel.item
 
     return {
@@ -107,7 +109,7 @@ export default {
   },
 
   normalizeDescription(description: string | null): string | null {
-    let result: string = ''
+    let result = ''
 
     if (!description) {
       return null
@@ -120,5 +122,5 @@ export default {
     }
 
     return result
-  }
+  },
 }
