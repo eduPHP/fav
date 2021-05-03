@@ -58,6 +58,15 @@ const ProvidersList = () => {
           <a className="rounded bg-blue-400 px-6 py-2 text-gray-200">Create</a>
         </Link>
         <ul className="mt-6 divide-y divide-gray-500 rounded-lg shadow bg-gray-600">
+          {!loading && !feeds.length && (
+            <div className="py-6 text-center">
+              No feeds to display, please{' '}
+              <Link href="/feeds/create">
+                <a className="text-blue-300">create a feed resource</a>
+              </Link>{' '}
+              to begin.
+            </div>
+          )}
           {loading && (
             <>
               <li className="py-6 px-8 flex items-center justify-between animate-pulse">

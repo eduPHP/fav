@@ -47,6 +47,15 @@ const Home = () => {
       </Head>
       <div>
         <ul className="mt-6 divide-y divide-gray-500 rounded-lg shadow bg-gray-600">
+          {!loading && !feeds.length && (
+            <div className="py-6 text-center">
+              No feeds to display, please{' '}
+              <Link href="/feeds/create">
+                <a className="text-blue-300">create a feed resource</a>
+              </Link>{' '}
+              to begin.
+            </div>
+          )}
           {loading && (
             <>
               {[0, 1, 2, 3, 4].map(i => (
