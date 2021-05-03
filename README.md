@@ -29,10 +29,12 @@ I will create an [issue](https://github.com/swalker2/node-rss-reader/issues) for
 - [ ] show public feeds for not logged in users
 
 ### Frontend requirements
-- [ ] user login and register
+- [x] user login and register
+- [x] Save rss providers
+- [x] List rss providers
+- [x] Edit rss providers
+- [x] Remove rss providers
+- [x] List rss
+- [x] List rss from one provider
 - [ ] password recover
-- [x] Save rss links
-- [x] List rss links
-- [x] Edit rss links
-- [x] Remove rss links
-- [x] List rss using react
+- [ ] edit profile
