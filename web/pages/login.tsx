@@ -7,6 +7,7 @@ import { useToast } from '../hooks/toasts';
 import * as Yup from 'yup';
 import getValidationErrors from '../util/getValidationErrors';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { useAuth } from '../hooks/auth';
 import Button from '../components/Form/Button';
 
@@ -83,10 +84,18 @@ const Login = () => {
           <span className="block text-gray-300 mb-2">Email</span>
           <Input name="email" focused type="email" />
         </label>
-        <label className="block mb-8 w-full">
+        <label className="block mb-4 w-full">
           <span className="block text-gray-300 mb-2">Password</span>
           <Input name="password" type="password" />
         </label>
+
+        <p className="mb-4 text-center">
+          Dont have an account?{' '}
+          <Link href="/register">
+            <a className="text-blue-300">Sign up for free!</a>
+          </Link>
+        </p>
+
         <Button type="submit" className="bg-blue-400 text-blue-100">
           Login
         </Button>

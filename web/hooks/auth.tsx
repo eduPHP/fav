@@ -143,6 +143,9 @@ export const authenticated = ctx => {
     Router.push('/login');
   }
 
+  // Needs to be here somehow...
+  api.defaults.headers['Authorization'] = `Bearer ${token}`;
+
   return { token };
 };
 

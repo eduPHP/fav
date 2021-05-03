@@ -58,10 +58,10 @@ const CreateFeed = () => {
   return (
     <div className="flex flex-col">
       <Head>
-        <title>Create Feed Entry | RSS</title>
+        <title>Create Feed Provider | RSS</title>
       </Head>
       <h1 className="text-2xl mb-4 text-gray-300 font-bold">
-        Create Feed Entry
+        Create Feed Provider
       </h1>
       <Form
         className="rounded-lg shadow bg-gray-600 py-6 px-8"

@@ -51,7 +51,7 @@ const Home = () => {
             <div className="py-6 text-center">
               No feeds to display, please{' '}
               <Link href="/feeds/create">
-                <a className="text-blue-300">create a feed resource</a>
+                <a className="text-blue-300">create a feed provider</a>
               </Link>{' '}
               to begin.
             </div>

@@ -15,7 +15,7 @@ export default function UserMenu() {
       setIsOpen(false);
     }
     if (menuRef.current && menuRef.current.contains(event.target)) {
-      setTimeout(() => setIsOpen(false), 500);
+      setTimeout(() => ref.current && setIsOpen(false), 500);
     }
   };
 
@@ -30,12 +30,11 @@ export default function UserMenu() {
     setIsOpen(!isOpen);
   }, [isOpen]);
 
-  const handleSignOut = useCallback(() => {
+  const handleSignOut = useCallback(async () => {
     document.removeEventListener('click', handleClickOutside, true);
-    setIsOpen(false);
     signOut();
-    Router.push('/login');
-  }, [isOpen]);
+    await Router.push('/login');
+  }, []);
 
   return (
     <div className="relative text-gray-300" ref={ref}>

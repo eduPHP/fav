@@ -27,7 +27,7 @@ const Register = () => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const router = useRouter();
-  const { signIn, signUp } = useAuth();
+  const { signUp } = useAuth();
 
   const handleRegister = useCallback(
     async (data: RegisterData) => {
@@ -98,9 +98,12 @@ const Register = () => {
         <Button type="submit" className="bg-blue-400 text-blue-100">
           Register
         </Button>
+        <div className="text-center mt-4">
+          <Link href="/login">
+            <a className="text-blue-300">Back to login</a>
+          </Link>
+        </div>
       </Form>
-
-      <Link href="/login">Back to login</Link>
     </div>
   );
 };

@@ -58,7 +58,7 @@ const Edit = ({ feed }) => {
   return (
     <div className="flex flex-col">
       <Head>
-        <title>Update Feed {feed.name} | RSS</title>
+        <title>Update Feed Provider {feed.name} | RSS</title>
       </Head>
       <h1 className="text-2xl mb-4 text-gray-300 font-bold">
         Update Feed {feed.name}
@@ -97,8 +97,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   req,
 }) => {
   const { id } = query;
-  // const { token } = authenticated({ req });
-  // api.defaults.headers['Authorization'] = `Bearer ${token}`;
+  authenticated({ req });
 
   const response = await api.get(`/feeds/${id}`);
   const { feed } = response.data;
