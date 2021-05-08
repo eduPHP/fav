@@ -99,9 +99,12 @@ const ProvidersList = () => {
               key={feed.id}
             >
               <span className="flex-1 max-w-[80%]">
-                <span className="text-indigo-300 block mb-2 text-xl">
-                  {feed.name}
-                </span>
+                <div className="mb-2 flex items-center">
+                  <span className="text-indigo-300 text-xl">{feed.name}</span>
+                  {feed.public && (
+                    <span className="px-2 text-sm"> [ public ]</span>
+                  )}
+                </div>
                 <span className="flex items-center">
                   <svg
                     className="w-4 h-4 fill-current mr-2"

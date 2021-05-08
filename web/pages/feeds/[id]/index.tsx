@@ -2,15 +2,15 @@ import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
 import { useCallback, useRef } from 'react';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
-import api from '../../services/api';
+import api from '../../../services/api';
 import { Form } from '@unform/web';
-import Input from '../../components/Form/Input';
-import Toggle from '../../components/Form/Toggle';
-import getValidationErrors from '../../util/getValidationErrors';
-import { useToast } from '../../hooks/toasts';
+import Input from '../../../components/Form/Input';
+import Toggle from '../../../components/Form/Toggle';
+import getValidationErrors from '../../../util/getValidationErrors';
+import { useToast } from '../../../hooks/toasts';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { authenticated } from '../../hooks/auth';
+import { authenticated } from '../../../hooks/auth';
 
 interface FeedFormData extends Feed {}
 
@@ -80,6 +80,10 @@ const Edit = ({ feed }) => {
         <label className="flex items-center mb-4">
           <Toggle name="active" type="checkbox" />
           <span className="ml-2 text-gray-300">Active</span>
+        </label>
+        <label className="flex items-center mb-4">
+          <Toggle name="public" type="checkbox" />
+          <span className="ml-2 text-gray-300">Public</span>
         </label>
         <button
           type="submit"

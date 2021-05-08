@@ -10,6 +10,8 @@ import Cookie from 'universal-cookie';
 import api from '../services/api';
 import nextCookie from 'next-cookies';
 
+const cookie = new Cookie();
+
 interface SignInCredentials {
   email: string;
   password: string;
@@ -50,7 +52,6 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>({} as AuthState);
   useEffect(() => {
     (async () => {
-      const cookie = new Cookie();
       const token = cookie.get<string>('@edu/rss-reader:token');
       const user = cookie.get<AuthUser>('@edu/rss-reader:user');
 
@@ -65,7 +66,6 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const setToken = useCallback(async ({ user, token }): Promise<void> => {
-    const cookie = new Cookie();
     cookie.set('@edu/rss-reader:token', token, { secure: false });
     cookie.set('@edu/rss-reader:user', user, { secure: false });
 
@@ -101,10 +101,9 @@ export const AuthProvider: React.FC = ({ children }) => {
     [setToken],
   );
 
-  const signOut = useCallback(() => {
-    const cookie = new Cookie();
-    cookie.remove('@edu/rss-reader:token');
-    cookie.remove('@edu/rss-reader:user');
+  const signOut = useCallback(async () => {
+    cookie.remove('@edu/rss-reader:token', { path: '/' });
+    cookie.remove('@edu/rss-reader:user', { path: '/' });
     setData({} as AuthState);
     delete api.defaults.headers['Authorization'];
   }, []);

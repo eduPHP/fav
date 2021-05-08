@@ -81,6 +81,10 @@ const CreateFeed = () => {
           <Toggle name="active" type="checkbox" />
           <span className="ml-2 text-gray-300">Active</span>
         </label>
+        <label className="flex items-center mb-4">
+          <Toggle name="public" type="checkbox" />
+          <span className="ml-2 text-gray-300">Public</span>
+        </label>
         <Button type="submit" className="bg-blue-400 text-blue-900">
           Save
         </Button>

@@ -32,7 +32,7 @@ export default function UserMenu() {
 
   const handleSignOut = useCallback(async () => {
     document.removeEventListener('click', handleClickOutside, true);
-    signOut();
+    await signOut();
     await Router.push('/login');
   }, []);
 
