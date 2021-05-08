@@ -1,5 +1,5 @@
 import { authenticated } from '../../../hooks/auth';
-import Home, { FeedItem } from '../../index';
+import { FeedItem } from '../../index';
 import api from '../../../services/api';
 import { formatter } from '../../../util/dateFormatter';
 import { useCallback, useEffect, useState } from 'react';
@@ -68,21 +68,27 @@ const Content = () => {
       )}
       <div>
         {!loading && (
-          <Link href={provider.link}>
-            <a
-              target="_blank"
-              className="text-indigo-300 flex items-center text-xl"
-            >
-              {provider.title}
-            </a>
-          </Link>
+          <div className="flex items-center text-gray-300 gap-2">
+            <Link href="/">
+              <a className="flex items-center text-xl">RSS</a>
+            </Link>
+            /
+            <Link href={provider.link}>
+              <a
+                target="_blank"
+                className="text-blue-300 flex items-center text-xl"
+              >
+                {provider.title}
+              </a>
+            </Link>
+          </div>
         )}
         <FeedsList feeds={provider?.feeds || []} loading={loading} noTag />
       </div>
     </>
   );
 };
-Home.getInitialProps = async ctx => {
+Content.getInitialProps = async ctx => {
   const { token } = authenticated(ctx);
   return { token };
 };

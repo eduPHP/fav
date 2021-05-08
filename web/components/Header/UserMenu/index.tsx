@@ -33,7 +33,7 @@ export default function UserMenu() {
   const handleSignOut = useCallback(async () => {
     document.removeEventListener('click', handleClickOutside, true);
     await signOut();
-    await Router.push('/login');
+    await Router.push('/');
   }, []);
 
   return (
@@ -59,16 +59,18 @@ export default function UserMenu() {
         />
       </div>
       <ul
-        className={`bg-gray-700 p-3 rounded shadow-lg absolute w-48 right-0 top-11 grid gap-3 text-right
+        className={`bg-gray-700 rounded shadow-lg absolute w-56 right-0 top-11 grid text-right
           ${isOpen ? 'block' : 'hidden'}`}
         ref={menuRef}
       >
         <li>
-          <Link href={'/feeds'}>Edit RSS Feeds</Link>
+          <Link href={'/feeds'}>
+            <a className="block w-full px-3 py-2">Edit your RSS providers</a>
+          </Link>
         </li>
-        <li className="border-t border-gray-600 -mx-3" />
+        <li className="border-b border-gray-600 mt-1" />
         <li className="cursor-pointer" onClick={handleSignOut}>
-          Logout
+          <span className="block w-full p-3">Logout</span>
         </li>
       </ul>
     </div>

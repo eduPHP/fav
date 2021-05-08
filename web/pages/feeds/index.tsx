@@ -55,7 +55,7 @@ const ProvidersList = () => {
       </Head>
       <div>
         <Link href={'/feeds/create'}>
-          <a className="rounded bg-blue-400 px-6 py-2 text-gray-200">
+          <a className="rounded bg-blue-600 px-6 py-2 text-gray-200 bg-opacity-70">
             Create Provider
           </a>
         </Link>
@@ -73,22 +73,22 @@ const ProvidersList = () => {
             <>
               <li className="py-6 px-8 flex items-center justify-between animate-pulse">
                 <span className="flex-1 max-w-[80%]">
-                  <span className="bg-indigo-300 rounded-sm block max-w-[30%] h-4 mb-4" />
+                  <span className="bg-blue-300 rounded-sm block max-w-[30%] h-4 mb-4" />
                   <span className="bg-gray-300 rounded-sm block max-w-xs h-4" />
                 </span>
                 <div className="flex flex-col justify-between items-end">
-                  <span className="bg-indigo-300 rounded-sm h-3 w-8 mb-3" />
-                  <span className="bg-indigo-300 rounded-sm h-3 w-14" />
+                  <span className="bg-blue-300 rounded-sm h-3 w-8 mb-3" />
+                  <span className="bg-blue-300 rounded-sm h-3 w-14" />
                 </div>
               </li>
               <li className="py-6 px-8 flex items-center justify-between animate-pulse">
                 <span className="flex-1 max-w-[80%]">
-                  <span className="bg-indigo-300 rounded-sm block max-w-[30%] h-4 mb-4" />
+                  <span className="bg-blue-300 rounded-sm block max-w-[30%] h-4 mb-4" />
                   <span className="bg-gray-300 rounded-sm block max-w-xs h-4" />
                 </span>
                 <div className="flex flex-col justify-between items-end">
-                  <span className="bg-indigo-300 rounded-sm h-3 w-8 mb-3" />
-                  <span className="bg-indigo-300 rounded-sm h-3 w-14" />
+                  <span className="bg-blue-300 rounded-sm h-3 w-8 mb-3" />
+                  <span className="bg-blue-300 rounded-sm h-3 w-14" />
                 </div>
               </li>
             </>
@@ -100,7 +100,7 @@ const ProvidersList = () => {
             >
               <span className="flex-1 max-w-[80%]">
                 <div className="mb-2 flex items-center">
-                  <span className="text-indigo-300 text-xl">{feed.name}</span>
+                  <span className="text-blue-300 text-xl">{feed.name}</span>
                   {feed.public && (
                     <span className="px-2 text-sm"> [ public ]</span>
                   )}
@@ -121,11 +121,11 @@ const ProvidersList = () => {
               </span>
               <div className="flex flex-col justify-between items-end">
                 <Link href={`/feeds/${feed.id}`}>
-                  <a className="text-indigo-300 hover:underline">Edit</a>
+                  <a className="text-blue-300 hover:underline">Edit</a>
                 </Link>
                 <button
                   onClick={() => handleDeleteRss(feed.id)}
-                  className="text-indigo-300 hover:underline"
+                  className="text-blue-300 hover:underline"
                   type="button"
                 >
                   Delete

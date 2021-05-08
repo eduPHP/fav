@@ -41,13 +41,13 @@ const Toggle: React.FC<Props> = ({ name, ...rest }) => {
     <div className="flex justify-between items-center">
       <div
         className={`w-14 h-8 flex items-center
-           focus-within:ring-4 focus-within:ring-gray-500
+           focus-within:ring-4 focus-within:ring-gray-400
            rounded-full p-1 duration-300 ease-in-out
-           ${checked ? 'bg-green-500' : 'bg-gray-300'}
+           ${checked ? 'bg-green-500' : 'bg-gray-500'}
            `}
       >
         <div
-          className={`bg-white w-6 h-6 rounded-full
+          className={`bg-gray-600 w-6 h-6 rounded-full
            shadow-md transform duration-300 ease-in-out
            ${checked ? 'translate-x-6' : ''}
            `}

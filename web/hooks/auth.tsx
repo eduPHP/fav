@@ -66,8 +66,12 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const setToken = useCallback(async ({ user, token }): Promise<void> => {
-    cookie.set('@edu/rss-reader:token', token, { secure: false });
-    cookie.set('@edu/rss-reader:user', user, { secure: false });
+    cookie.set('@edu/rss-reader:token', token, {
+      secure: process.env.NODE_ENV === 'production',
+    });
+    cookie.set('@edu/rss-reader:user', user, {
+      secure: process.env.NODE_ENV === 'production',
+    });
 
     api.defaults.headers['Authorization'] = 'Bearer ' + token;
     setData({
@@ -128,18 +132,23 @@ interface AuthConfig {
   redirectTo?: string;
 }
 
-export const authenticated = ctx => {
+export const authenticated = (ctx, options = {}) => {
   const cookies = nextCookie(ctx);
   const token = cookies['@edu/rss-reader:token'];
+  const config = {
+    redirectTo: '/login',
+    redirect: true,
+    ...options,
+  };
 
-  if (ctx.req && !token) {
-    ctx.res.writeHead(302, { Location: '/login' });
+  if (config.redirect && ctx.req && !token) {
+    ctx.res.writeHead(302, { Location: config.redirectTo });
     ctx.res.end();
     return {};
   }
 
-  if (!token) {
-    Router.push('/login');
+  if (!token && config.redirect) {
+    Router.push(config.redirectTo);
   }
 
   // Needs to be here somehow...

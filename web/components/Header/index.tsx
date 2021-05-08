@@ -26,11 +26,9 @@ export function Header() {
         {authenticated ? (
           <UserMenu />
         ) : (
-          <div className="text-sm">
-            <Link href="/login">
-              <a className="mr-2">LOGIN</a>
-            </Link>
-            <Link href="/register">REGISTER</Link>
+          <div className="flex items-center gap-2">
+            <Link href="/login">Sign In</Link>|
+            <Link href="/register">Sign Up</Link>
           </div>
         )}
       </div>

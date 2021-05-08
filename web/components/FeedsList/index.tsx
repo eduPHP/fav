@@ -24,7 +24,7 @@ export default function FeedsList({ feeds, loading, noTag }: FeedsListProps) {
               )}
               <div className="pt-3">
                 <div>
-                  <span className="text-indigo-300 flex items-center text-xl">
+                  <span className="text-blue-300 flex items-center text-xl">
                     <span className="overflow-hidden flex max-w-[60%] flex-1">
                       <svg
                         className="w-4 h-4 fill-current mr-1.5 float-left"
@@ -34,7 +34,7 @@ export default function FeedsList({ feeds, loading, noTag }: FeedsListProps) {
                         <path d="M212.26 390.24l-60.331 60.331c-25.012 25.012-65.517 25.012-90.508.005-24.996-24.996-24.996-65.505-.005-90.496l120.683-120.683c24.991-24.992 65.5-24.992 90.491 0 8.331 8.331 21.839 8.331 30.17 0 8.331-8.331 8.331-21.839 0-30.17-41.654-41.654-109.177-41.654-150.831 0L31.247 329.909c-41.654 41.654-41.654 109.177 0 150.831 41.649 41.676 109.177 41.676 150.853 0l60.331-60.331c8.331-8.331 8.331-21.839 0-30.17s-21.84-8.33-30.171.001z" />
                         <path d="M480.751 31.24c-41.654-41.654-109.199-41.654-150.853 0l-72.384 72.384c-8.331 8.331-8.331 21.839 0 30.17 8.331 8.331 21.839 8.331 30.17 0l72.384-72.384c24.991-24.992 65.521-24.992 90.513 0 24.991 24.991 24.991 65.5 0 90.491L317.845 284.638c-24.992 24.992-65.5 24.992-90.491 0-8.331-8.331-21.839-8.331-30.17 0s-8.331 21.839 0 30.17c41.654 41.654 109.177 41.654 150.831 0l132.736-132.736c41.654-41.654 41.654-109.178 0-150.832z" />
                       </svg>
-                      <span className="bg-indigo-300 rounded-sm w-full h-4 mb-4" />
+                      <span className="bg-blue-300 rounded-sm w-full h-4 mb-4" />
                     </span>
                   </span>
                 </div>
@@ -66,7 +66,7 @@ export default function FeedsList({ feeds, loading, noTag }: FeedsListProps) {
           <div className="pt-2">
             <Link href={feed.link}>
               <a
-                className="text-indigo-300 flex items-center text-xl"
+                className="text-blue-300 flex items-center text-xl"
                 target="_blank"
               >
                 <span className="overflow-hidden">

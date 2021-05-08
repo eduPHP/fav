@@ -11,6 +11,7 @@ import { useToast } from '../../../hooks/toasts';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { authenticated } from '../../../hooks/auth';
+import Link from 'next/link';
 
 interface FeedFormData extends Feed {}
 
@@ -60,9 +61,15 @@ const Edit = ({ feed }) => {
       <Head>
         <title>Update Feed Provider {feed.name} | RSS</title>
       </Head>
-      <h1 className="text-2xl mb-4 text-gray-300 font-bold">
-        Update Feed {feed.name}
-      </h1>
+      <div className="flex items-center text-gray-300 text-xl gap-2 mb-4">
+        <Link href="/feeds">
+          <a className="flex items-center">RSS Providers</a>
+        </Link>
+        /
+        <h1 className="text-gray-300">
+          Update Feed <span className="font-bold">{feed.name}</span>
+        </h1>
+      </div>
       <Form
         className="rounded-lg shadow bg-gray-600 py-6 px-8"
         ref={formRef}

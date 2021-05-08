@@ -12,6 +12,7 @@ import api from '../../services/api';
 import { useRouter } from 'next/router';
 import Button from '../../components/Form/Button';
 import { authenticated } from '../../hooks/auth';
+import Link from 'next/link';
 
 interface FeedFormData extends Feed {}
 
@@ -60,9 +61,12 @@ const CreateFeed = () => {
       <Head>
         <title>Create Feed Provider | RSS</title>
       </Head>
-      <h1 className="text-2xl mb-4 text-gray-300 font-bold">
-        Create Feed Provider
-      </h1>
+      <div className="flex items-center text-gray-300 text-xl gap-2 mb-4">
+        <Link href="/feeds">
+          <a className="flex items-center">RSS Providers</a>
+        </Link>
+        /<h1 className="text-xl text-gray-300">Create Feed Provider</h1>
+      </div>
       <Form
         className="rounded-lg shadow bg-gray-600 py-6 px-8"
         ref={formRef}
@@ -85,7 +89,7 @@ const CreateFeed = () => {
           <Toggle name="public" type="checkbox" />
           <span className="ml-2 text-gray-300">Public</span>
         </label>
-        <Button type="submit" className="bg-blue-400 text-blue-900">
+        <Button type="submit" className="bg-blue-600 bg-opacity-70">
           Save
         </Button>
       </Form>
