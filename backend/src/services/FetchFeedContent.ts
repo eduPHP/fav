@@ -6,11 +6,23 @@ import ParseXmlFeedContent, {
   FeedListInterface,
 } from './ParseXmlFeedContent'
 
+interface ResponseFeedItem extends FeedItem {
+  provider_id: number
+}
+
+interface ResponseFeedListInterface extends Omit<FeedListInterface, 'item'> {
+  item: ResponseFeedItem[]
+}
+
 export default class {
-  async handle(feed: Feed): Promise<FeedListInterface> {
+  async handle(feed: Feed): Promise<ResponseFeedListInterface> {
     try {
       const response = await axios.get(feed.url)
-      return ParseXmlFeedContent.parse(response.data)
+      const content = await ParseXmlFeedContent.parse(response.data)
+      return {
+        ...content,
+        item: content.item.map(i => ({ ...i, provider_id: feed.id })),
+      }
     } catch {
       return {
         item: [],
@@ -21,12 +33,12 @@ export default class {
     }
   }
 
-  async handleMany(feeds: Feed[]): Promise<FeedItem[]> {
+  async handleMany(feeds: Feed[]): Promise<ResponseFeedItem[]> {
     try {
       const allItems = await feeds.reduce(async (acc, feed) => {
         const list = await this.handle(feed)
         return acc.then(agregator => agregator.concat(list.item))
-      }, Promise.resolve<FeedItem[]>([]))
+      }, Promise.resolve<ResponseFeedItem[]>([]))
 
       allItems.sort((a, b) => {
         const aDate = a.pubDate
