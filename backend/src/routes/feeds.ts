@@ -7,15 +7,15 @@ const router = Router()
 
 router.use('/feeds', AuthorizeUsers)
 
+// RSS Reader
+router.get('/feeds/contents', RssReaderController.index)
+router.get('/feeds/contents/:id', RssReaderController.show)
+
 // feeds CRUD
 router.post('/feeds', FeedsController.store)
 router.get('/feeds', FeedsController.index)
-router.get('/feeds/all', RssReaderController.index)
 router.get('/feeds/:id', FeedsController.show)
 router.put('/feeds/:id', FeedsController.update)
 router.delete('/feeds/:id', FeedsController.destroy)
-
-// RSS Reader
-router.get('/feeds/:id/list', RssReaderController.show)
 
 export default router

@@ -11,6 +11,7 @@ class FeedsController {
       name: Yup.string().required(),
       url: Yup.string().url().required(),
       active: Yup.boolean(),
+      public: Yup.boolean(),
       user: Yup.object().shape({
         id: Yup.number(),
       }),
@@ -56,6 +57,7 @@ class FeedsController {
       name: Yup.string().required(),
       url: Yup.string().url().required(),
       active: Yup.boolean(),
+      public: Yup.boolean(),
     })
 
     const data = (await schema.validate(req.body, { abortEarly: true })) as Feed

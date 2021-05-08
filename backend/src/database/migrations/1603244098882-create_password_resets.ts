@@ -32,6 +32,7 @@ export class createPasswordResets1603244098882 implements MigrationInterface {
           {
             name: 'created_at',
             type: 'datetime',
+            default: 'now()',
           },
           {
             name: 'user_id',
