@@ -15,5 +15,6 @@ router.post('/auth/recover', PasswordsResetController.store)
 router.put('/auth/recover', PasswordsResetController.update)
 
 router.get('/auth/user', AuthorizeUsers, ProfileController.show)
+router.put('/auth/user', AuthorizeUsers, ProfileController.update)
 
 export default router

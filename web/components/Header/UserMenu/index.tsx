@@ -69,6 +69,11 @@ export default function UserMenu() {
           </Link>
         </li>
         <li className="border-b border-gray-600 mt-1" />
+        <li>
+          <Link href={'/profile'}>
+            <a className="block w-full px-3 py-2">Edit profile</a>
+          </Link>
+        </li>
         <li className="cursor-pointer" onClick={handleSignOut}>
           <span className="block w-full p-3">Logout</span>
         </li>

@@ -23,7 +23,7 @@ interface SignUpCredentials {
   password: string;
 }
 
-interface AuthUser {
+export interface AuthUser {
   name: string;
   email: string;
 }
@@ -40,6 +40,8 @@ interface AuthContextInterface {
   signIn(credentials: SignInCredentials): Promise<AuthState>;
 
   signUp(credentials: SignUpCredentials): Promise<AuthState>;
+
+  updateUser(credentials: SignUpCredentials, token: string): Promise<void>;
 
   signOut(): void;
 
@@ -92,6 +94,16 @@ export const AuthProvider: React.FC = ({ children }) => {
     [setToken],
   );
 
+  const updateUser = useCallback(
+    async ({ name, email }: AuthUser, token: string) => {
+      await setToken({
+        token: data.token,
+        user: { email, name },
+      });
+    },
+    [setToken, data],
+  );
+
   const signUp = useCallback(
     async ({ name, email, password }): Promise<AuthState> => {
       const response = await api.post<AuthState>('auth/register', {
@@ -120,6 +132,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         signIn,
         signUp,
         signOut,
+        updateUser,
         setToken,
       }}
     >
