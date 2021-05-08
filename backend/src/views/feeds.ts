@@ -7,6 +7,7 @@ export default {
       name: feed.name,
       url: feed.url,
       active: feed.active,
+      public: feed.public,
       user: feed.user && {
         id: feed.user.id,
         name: feed.user.name,

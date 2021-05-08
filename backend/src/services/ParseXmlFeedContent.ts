@@ -23,7 +23,7 @@ interface AtomFeed {
   feed: {
     entry: AtomFeedItem[]
     title: string
-    link: string
+    link: { $: { href: string } }
   }
 }
 
@@ -70,7 +70,7 @@ export default {
 
     return {
       title: channel.title,
-      link: channel.link,
+      link: channel.link.$.href,
       updatedAt: new Date().toLocaleString(),
       item: items.map((item: AtomFeedItem) => {
         const description = this.normalizeDescription(item.summary)

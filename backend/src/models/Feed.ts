@@ -24,6 +24,9 @@ export default class Feed {
   active: boolean
 
   @Column()
+  public: boolean
+
+  @Column()
   user_id: number
 
   @CreateDateColumn()

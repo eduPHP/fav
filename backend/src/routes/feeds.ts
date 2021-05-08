@@ -1,10 +1,16 @@
 import { Router } from 'express'
 import FeedsController from '../controllers/FeedsController'
 import RssReaderController from '../controllers/RssReaderController'
+import PublicRssReaderController from '../controllers/PublicRssReaderController'
 import AuthorizeUsers from '../middleware/AuthorizeUsers'
 
 const router = Router()
 
+// public RSS Reader
+router.get('/feeds/public-contents', PublicRssReaderController.index)
+router.get('/feeds/public-contents/:id', PublicRssReaderController.show)
+
+// auth
 router.use('/feeds', AuthorizeUsers)
 
 // RSS Reader
