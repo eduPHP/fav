@@ -26,7 +26,7 @@ I will create an [issue](https://github.com/swalker2/node-rss-reader/issues) for
   - [x] get user profile
   - [ ] update user
 - [x] protect routes
-- [ ] show public feeds for not logged in users
+- [x] show public feeds for not logged in users
 
 ### Frontend requirements
 - [x] user login and register
@@ -37,4 +37,4 @@ I will create an [issue](https://github.com/swalker2/node-rss-reader/issues) for
 - [x] List rss
 - [x] List rss from one provider
 - [ ] password recover
-- [ ] edit profile
+- [x] edit profile

@@ -28,7 +28,7 @@ export interface AuthUser {
   email: string;
 }
 
-interface AuthState {
+export interface AuthState {
   token: string;
   user: AuthUser;
 }

@@ -18,7 +18,6 @@ export default {
   async store(req: Request, res: Response): Promise<Response> {
     const schema = Yup.object().shape({
       email: Yup.string().email().required(),
-      base: Yup.string().nullable(),
     })
     const data = (await schema.validate(req.body, {
       abortEarly: false,
@@ -29,7 +28,7 @@ export default {
     if (!user) {
       return res
         .status(422)
-        .json({ errors: { email: ['Não foi possível enviar o email.'] } })
+        .json({ errors: { email: ['Error trying to send the email.'] } })
     }
 
     const token = Math.random().toString(36).substring(3)
@@ -39,13 +38,17 @@ export default {
     })
     await passwordResetRepo.save(passwordReset)
 
+    const url = `${app.frontend}/recover/${passwordReset.id}.${token}`
     const messageHtml = `
-            <p>Clique no link a seguir para alterar sua senha</p>
-            <a href="${app.frontend}/admin/forgot/${passwordReset.id}.${token}">Altere sua senha.</a>
+            <p>Click on the link below to update your password</p>
+            <a href="${url}">
+              Change your password.
+            </a>
         `
     const messageText = `
-             Acesse o link a seguir para alterar sua senha:
-             ${app.frontend}/admin/forgot/${passwordReset.id}.${token}
+             Click on the link below to update your password:
+
+             ${url}
          `
     const result = await mailer.send(
       user.email,
