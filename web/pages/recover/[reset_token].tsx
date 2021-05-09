@@ -62,7 +62,7 @@ const Reset_token = () => {
         }
       }
     },
-    [addToast],
+    [addToast, router.query.reset_token],
   );
 
   return (

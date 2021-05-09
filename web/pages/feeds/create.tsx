@@ -61,11 +61,10 @@ const CreateFeed = () => {
       <Head>
         <title>Create Feed Provider | RSS</title>
       </Head>
-      <div className="flex items-center text-gray-300 text-xl gap-2 mb-4">
-        <Link href="/feeds">
-          <a className="flex items-center">RSS Providers</a>
-        </Link>
-        /<h1 className="text-xl text-gray-300">Create Feed Provider</h1>
+      <div className="text-gray-300 text-xl mb-4">
+        <Link href="/feeds">RSS Providers</Link>
+        {' / '}
+        <span className="text-xl text-gray-300">Create Feed Provider</span>
       </div>
       <Form
         className="rounded-lg shadow bg-gray-600 py-6 px-8"

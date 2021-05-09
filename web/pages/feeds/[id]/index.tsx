@@ -61,14 +61,14 @@ const Edit = ({ feed }) => {
       <Head>
         <title>Update Feed Provider {feed.name} | RSS</title>
       </Head>
-      <div className="flex items-center text-gray-300 text-xl gap-2 mb-4">
+      <div className="text-gray-300 text-xl mb-4">
         <Link href="/feeds">
-          <a className="flex items-center">RSS Providers</a>
+          <a className="flex items-center inline">RSS Providers</a>
         </Link>
-        /
-        <h1 className="text-gray-300">
+        {' / '}
+        <span className="text-gray-300">
           Update Feed <span className="font-bold">{feed.name}</span>
-        </h1>
+        </span>
       </div>
       <Form
         className="rounded-lg shadow bg-gray-600 py-6 px-8"
