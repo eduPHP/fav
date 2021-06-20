@@ -1,7 +1,7 @@
-**/node_modules
-**/.vscode
-**/.idea
-**/yarn-error.log
-**/.env
+node_modules
+.vscode
+.idea
+yarn-error.log
+.env
 backend/cache/*
-web/.next
+.next
