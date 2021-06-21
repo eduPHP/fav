@@ -76,17 +76,16 @@ const handler = async (req: AuthApiRequest, res: NextApiResponse) => {
     }
 
     // atualiza senha
-    const foundUser = await UserRepository.find(passwordReset.user)
+    const user = await UserRepository.find(passwordReset.user)
     await UserRepository.update({
-      ...foundUser,
+      ...user,
       password: await encrypt(password)
     })
     // marca token como usado
     await PasswordResetsRepository.use(passwordReset)
-    const user = UserRepository.present(foundUser)
 
     return res.json({
-      user,
+      user: UserRepository.present(user),
       token: createToken(user),
     })
   }
