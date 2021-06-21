@@ -49,6 +49,7 @@ const handler = async (req: AuthApiRequest, res: NextApiResponse) => {
          `
     const result = await mailer.send(
       user.email,
+      'Password Recover',
       messageText,
       messageHtml,
     )
