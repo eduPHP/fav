@@ -18,7 +18,6 @@ export default {
   },
 
   transporter() {
-    console.log(mail);
     return nodemailer.createTransport({
       host: mail.host,
       port: mail.port,
