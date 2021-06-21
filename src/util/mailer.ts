@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer'
+import nodemailer from 'nodemailer';
 import { mail } from '../../config';
 
 export default {
@@ -14,10 +14,11 @@ export default {
       subject, // Subject line
       text, // plain text body
       html: html || text, // html body
-    })
+    });
   },
 
   transporter() {
+    console.log(mail);
     return nodemailer.createTransport({
       host: mail.host,
       port: mail.port,
@@ -26,6 +27,6 @@ export default {
         user: mail.user, // generated ethereal user
         pass: mail.pass, // generated ethereal password
       },
-    })
+    });
   },
-}
+};
