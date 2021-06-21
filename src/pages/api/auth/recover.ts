@@ -49,7 +49,6 @@ const handler = async (req: AuthApiRequest, res: NextApiResponse) => {
          `
     const result = await mailer.send(
       user.email,
-      'Recuperação de senha',
       messageText,
       messageHtml,
     )
@@ -64,7 +63,7 @@ const handler = async (req: AuthApiRequest, res: NextApiResponse) => {
     const passwordReset = await PasswordResetsRepository.find(
       new ObjectId(resetId)
     )
-    // compara token com token gravado
+
     if (
       !passwordReset ||
       passwordReset.reset_at ||
@@ -75,13 +74,12 @@ const handler = async (req: AuthApiRequest, res: NextApiResponse) => {
       })
     }
 
-    // atualiza senha
     const user = await UserRepository.find(passwordReset.user)
     await UserRepository.update({
       ...user,
       password: await encrypt(password)
     })
-    // marca token como usado
+
     await PasswordResetsRepository.use(passwordReset)
 
     return res.json({
