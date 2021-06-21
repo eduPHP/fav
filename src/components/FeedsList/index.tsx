@@ -10,7 +10,7 @@ interface FeedsListProps {
 export default function FeedsList({ feeds, loading, noTag }: FeedsListProps) {
   return (
     <ul className="mt-6 divide-y divide-gray-500 rounded-lg shadow bg-gray-600">
-      {loading && (
+      {loading && !feeds.length && (
         <>
           {[0, 1, 2, 3, 4].map(i => (
             <li

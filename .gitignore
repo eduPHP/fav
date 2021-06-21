@@ -5,3 +5,5 @@ yarn-error.log
 .env
 backend/cache/*
 .next
+
+.vercel
