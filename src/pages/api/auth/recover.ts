@@ -54,7 +54,7 @@ const handler = async (req: AuthApiRequest, res: NextApiResponse) => {
       messageHtml,
     )
 
-    return res.json({ sent: result.rejected.length === 0 })
+    return res.json({ sent: result.response })
   }
 
   if (req.method === 'PUT') {

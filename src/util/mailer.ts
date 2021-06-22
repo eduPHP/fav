@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import { mail } from '../../config';
+import aws from 'aws-sdk';
 
 export default {
   async send(
@@ -10,6 +11,7 @@ export default {
   ) {
     return await this.transporter().sendMail({
       from: `"${mail.from.name}" <${mail.from.email}>`, // sender address
+      replyTo: `"${mail.from.name}" <${mail.from.email}>`,
       to, // list of receivers
       subject, // Subject line
       text, // plain text body
@@ -18,14 +20,17 @@ export default {
   },
 
   transporter() {
+    aws.config.update({
+      'accessKeyId': mail.key,
+      'secretAccessKey': mail.secret,
+    })
+    const ses = new aws.SES({
+      apiVersion: "2010-12-01",
+      region: "us-east-1",
+    });
+
     return nodemailer.createTransport({
-      host: mail.host,
-      port: mail.port,
-      secure: mail.port === 465, // true for 465, false for other ports
-      auth: {
-        user: mail.user, // generated ethereal user
-        pass: mail.pass, // generated ethereal password
-      },
+      SES: { ses, aws },
     });
   },
 };
