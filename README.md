@@ -19,6 +19,7 @@ Study case.
 - [x] protect routes
 - [x] show public feeds for not logged in users
 - [ ] add cache
+- [ ] do something with feeds active state
 
 ### Frontend requirements
 - [x] user login and register
@@ -30,3 +31,4 @@ Study case.
 - [x] List rss from one provider
 - [x] password recover
 - [x] edit profile
+- [ ] visual feedback for public and active/inactive feeds

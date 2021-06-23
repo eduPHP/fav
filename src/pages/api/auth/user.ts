@@ -12,9 +12,13 @@ const handler = async (req: AuthApiRequest, res: NextApiResponse) => {
       delete req.body.password
     }
 
-    Object.assign(user, req.body)
+    Object.assign(user, req.body);
 
-    await UserRepository.update(user);
+    try {
+      await UserRepository.update(user);
+    } catch (e) {
+      return res.status(422).json({ errors: { email: e.message } })
+    }
 
     return res.json({ user: UserRepository.present(user) })
   }

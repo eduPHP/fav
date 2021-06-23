@@ -46,11 +46,11 @@ export default function Input({ name, focused, ...rest }: InputProps) {
         {...rest}
         className={`
            ${rest.className}
-           bg-gray-500 text-gray-100 rounded px-4 py-4 w-full bg-gray-300
+           rounded px-4 py-4 w-full
            focus:outline-none
            focus:ring-4
            focus:ring-gray-400
-           ${error && 'bg-red-200'}
+           ${error ? 'bg-red-300 text-gray-600' : 'text-gray-100 bg-gray-500'}
        `}
       />
       {error && <span className="text-red-300 mt-1 block">{error}</span>}

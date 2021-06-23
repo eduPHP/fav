@@ -8,6 +8,8 @@ export interface UserInterface {
   name: string;
   email: string;
   password: string;
+  created_at: Date;
+  updated_at: Date;
 }
 
 export interface PresentUser {
@@ -28,6 +30,8 @@ class UserRepository {
         name,
         email,
         password: await encrypt(password),
+        created_at: new Date(),
+        updated_at: new Date(),
       });
 
     return response.ops[0];
@@ -65,9 +69,20 @@ class UserRepository {
       user.password = await encrypt(user.password)
     }
 
+    const emailExists = await db
+      .collection<UserInterface>('users')
+      .findOne({ email: user.email, _id: { $ne: user._id } })
+
+    if (emailExists) {
+      throw new Error('Email is already taken.')
+    }
+
     await db
       .collection<UserInterface>('users')
-      .findOneAndReplace({ _id: user._id }, user);
+      .findOneAndReplace(
+        { _id: user._id },
+        { ...user, updated_at: new Date() }
+      );
 
     return user;
   }
