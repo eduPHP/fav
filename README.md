@@ -17,9 +17,9 @@ Study case.
   - [x] get user profile
   - [x] update user
 - [x] protect routes
-- [x] show public feeds for not logged in users
+- [x] show public feeds for not logged-in users
 - [ ] add cache
-- [ ] do something with feeds active state
+- [x] do something with feeds active state
 
 ### Frontend requirements
 - [x] user login and register

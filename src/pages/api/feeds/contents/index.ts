@@ -4,8 +4,7 @@ import FeedRepository from '../../../../services/repositories/FeedRepository';
 import FetchFeedContent from '../../../../services/FetchFeedContent';
 
 const handler = async (req: AuthApiRequest, res: NextApiResponse) => {
-  const feeds = await FeedRepository.findAllFromUser(req.user._id);
-
+  const feeds = await FeedRepository.findAllFromUser(req.user._id, true);
 
   const fetchFeed = new FetchFeedContent();
 

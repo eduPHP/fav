@@ -3,13 +3,16 @@ import { AuthApiRequest, protect } from '../../../middleware/apiAuth';
 import UserRepository from '../../../services/repositories/UserRepository';
 import { validate } from '../../../middleware/validation';
 import { updateSchema } from '../../../util/validation/userSchema';
+import { encrypt } from '../../../services/bcrypt';
 
 const handler = async (req: AuthApiRequest, res: NextApiResponse) => {
   const user = await UserRepository.find(req.user._id);
 
   if (req.method === 'PUT') {
-    if (!req.body.password.length) {
-      delete req.body.password
+    if (req.body.password.length) {
+      req.body.password = await encrypt(req.body.password)
+    } else {
+      delete req.body.password;
     }
 
     Object.assign(user, req.body);

@@ -67,10 +67,6 @@ class UserRepository {
   async update(user: UserInterface): Promise<UserInterface> {
     const { db } = await connect();
 
-    if (user.password) {
-      user.password = await encrypt(user.password)
-    }
-
     const emailExists = await db
       .collection<UserInterface>('users')
       .findOne({ email: user.email, _id: { $ne: user._id } })

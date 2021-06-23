@@ -20,6 +20,13 @@ interface CreateFeed extends FeedType{
   }
 }
 
+interface Filter {
+  _id?: ObjectId;
+  user?: ObjectId;
+  is_active?: boolean;
+  is_public?: boolean;
+}
+
 class FeedRepository {
   async create({ name, url, is_active, is_public, user }: CreateFeed): Promise<FeedInterface> {
     const { db } = await connect();
@@ -40,12 +47,18 @@ class FeedRepository {
     return response.ops[0];
   }
 
-  public async findAllFromUser(user: ObjectId): Promise<FeedInterface[]> {
+  public async findAllFromUser(user: ObjectId, onlyActive: boolean = null): Promise<FeedInterface[]> {
     const { db } = await connect();
+
+    const filter: Filter = { user }
+
+    if (onlyActive !== null) {
+      filter.is_active = onlyActive
+    }
 
     const result = await db
       .collection<FeedInterface>('feeds')
-      .find({ user });
+      .find(filter);
 
     return result.toArray();
   }
