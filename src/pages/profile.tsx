@@ -10,12 +10,7 @@ import * as Yup from 'yup';
 import getValidationErrors from '../util/getValidationErrors';
 import { useToast } from '../hooks/toasts';
 import { useRouter } from 'next/router';
-
-interface ProfileData {
-  name: string;
-  email: string;
-  password: string;
-}
+import { UserType, updateSchema } from '../util/validation/userSchema';
 
 const Profile = ({ props }) => {
   const formRef = useRef<FormHandles>(null);
@@ -24,25 +19,14 @@ const Profile = ({ props }) => {
   const { user, updateUser } = useAuth();
 
   const handleRegister = useCallback(
-    async (data: ProfileData) => {
+    async (data: UserType) => {
       try {
         formRef.current.setErrors({});
-        const schema = Yup.object().shape({
-          name: Yup.string().required('Name is required.'),
-          email: Yup.string()
-            .required('Email is required.')
-            .email('Invalid email format.'),
-          password: data.password.length
-            ? Yup.string()
-                .min(6, 'Minimum of 6 character')
-                .required('Password is requried.')
-            : Yup.string(),
-        });
 
-        await schema.validate(data, { abortEarly: false });
+        await updateSchema.validate(data, { abortEarly: false });
 
-        await api.put('/auth/user', data);
-        await updateUser(data, props.token);
+        const res = await api.put('/auth/user', data);
+        await updateUser(res.data.user, props.token);
 
         addToast({
           title: 'Success',
@@ -54,6 +38,8 @@ const Profile = ({ props }) => {
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           formRef.current.setErrors(getValidationErrors(err));
+        } else if (err.response?.data?.errors) {
+          formRef.current.setErrors(err.response.data.errors);
         } else {
           addToast({
             title: 'Profile update failed.',
@@ -68,31 +54,31 @@ const Profile = ({ props }) => {
   );
 
   return (
-    <div className="flex flex-col max-w-md mx-auto">
+    <div className='flex flex-col max-w-md mx-auto'>
       <Head>
         <title>Register | RSS</title>
       </Head>
-      <h1 className="text-xl mb-4 text-gray-300">Profile</h1>
+      <h1 className='text-xl mb-4 text-gray-300'>Profile</h1>
       <Form
-        className="rounded-lg shadow bg-gray-600 py-6 px-8"
+        className='rounded-lg shadow bg-gray-600 py-6 px-8'
         ref={formRef}
         onSubmit={handleRegister}
         initialData={user}
       >
-        <label className="block mb-2 w-full">
-          <span className="block text-gray-300 mb-2">Name</span>
-          <Input name="name" />
+        <label className='block mb-2 w-full'>
+          <span className='block text-gray-300 mb-2'>Name</span>
+          <Input name='name' />
         </label>
 
-        <label className="block mb-2 w-full">
-          <span className="block text-gray-300 mb-2">Email</span>
-          <Input name="email" type="email" />
+        <label className='block mb-2 w-full'>
+          <span className='block text-gray-300 mb-2'>Email</span>
+          <Input name='email' type='email' />
         </label>
-        <label className="block mb-8 w-full">
-          <span className="block text-gray-300 mb-2">Password</span>
-          <Input name="password" type="password" />
+        <label className='block mb-8 w-full'>
+          <span className='block text-gray-300 mb-2'>Password</span>
+          <Input name='password' type='password' />
         </label>
-        <Button type="submit" className="bg-blue-400 text-blue-100">
+        <Button type='submit' className='bg-blue-400 text-blue-100'>
           Save
         </Button>
       </Form>

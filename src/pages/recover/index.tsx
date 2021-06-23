@@ -44,6 +44,8 @@ const Index = () => {
         setSending(false);
         if (err instanceof Yup.ValidationError) {
           formRef.current.setErrors(getValidationErrors(err));
+        } else if (err.response?.data?.errors) {
+          formRef.current.setErrors(err.response.data.errors);
         } else {
           addToast({
             title: 'Recover failed.',

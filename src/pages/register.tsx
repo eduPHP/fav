@@ -10,18 +10,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useAuth } from '../hooks/auth';
 import Button from '../components/Form/Button';
-
-interface RegisterData {
-  name: string;
-  email: string;
-  password: string;
-}
-
-interface UserData {
-  user: {
-    name: string;
-  };
-}
+import schema, { UserType } from '../util/validation/userSchema';
 
 const Register = () => {
   const formRef = useRef<FormHandles>(null);
@@ -30,18 +19,9 @@ const Register = () => {
   const { signUp } = useAuth();
 
   const handleRegister = useCallback(
-    async (data: RegisterData) => {
+    async (data: UserType) => {
       try {
         formRef.current.setErrors({});
-        const schema = Yup.object().shape({
-          name: Yup.string().required('Name is required.'),
-          email: Yup.string()
-            .required('Email is required.')
-            .email('Invalid email format.'),
-          password: Yup.string()
-            .min(6, 'Minimum of 6 character')
-            .required('Password is requried.'),
-        });
 
         await schema.validate(data, { abortEarly: false });
 
@@ -55,6 +35,7 @@ const Register = () => {
 
         await router.push('/');
       } catch (err) {
+        formRef.current.clearField('password');
         if (err instanceof Yup.ValidationError) {
           formRef.current.setErrors(getValidationErrors(err));
         } else if (err.response?.data?.errors) {

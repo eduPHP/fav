@@ -53,6 +53,7 @@ const Login = () => {
 
         await router.push('/');
       } catch (err) {
+        formRef.current.clearField('password');
         if (err instanceof Yup.ValidationError) {
           formRef.current.setErrors(getValidationErrors(err));
         } else if (err.response?.data?.errors) {
