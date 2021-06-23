@@ -61,6 +61,10 @@ class UserRepository {
   async update(user: UserInterface): Promise<UserInterface> {
     const { db } = await connect();
 
+    if (user.password) {
+      user.password = await encrypt(user.password)
+    }
+
     await db
       .collection<UserInterface>('users')
       .findOneAndReplace({ _id: user._id }, user);
