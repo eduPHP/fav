@@ -20,7 +20,7 @@ const handler = async (req: AuthApiRequest, res: NextApiResponse) => {
   }
 
   if (req.method === 'GET') {
-    return res.json({ user })
+    return res.json({ user: UserRepository.present(user) })
   }
 
   res.status(405)
