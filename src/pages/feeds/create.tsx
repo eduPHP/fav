@@ -15,7 +15,7 @@ import { authenticated } from '../../hooks/auth';
 import Link from 'next/link';
 import schema, { FeedType } from '../../util/validation/feedSchema';
 
-const CreateFeed = () => {
+const CreateFeed = ({ user }) => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const router = useRouter();
@@ -78,8 +78,11 @@ const CreateFeed = () => {
           <span className="ml-2 text-gray-300">Active</span>
         </label>
         <label className="flex items-center mb-4">
-          <Toggle name="is_public" type="checkbox" />
-          <span className="ml-2 text-gray-300">Public feed provider</span>
+          <Toggle disabled={!user.is_admin} name="is_public" type="checkbox" />
+          <span className="ml-2 text-gray-300">
+            Public feed provider&nbsp;
+            <small className="text-xs text-gray-400 italic">*admin only*</small>
+          </span>
         </label>
         <Button type="submit" className="bg-blue-600 bg-opacity-70">
           Save
@@ -90,8 +93,9 @@ const CreateFeed = () => {
 };
 
 CreateFeed.getInitialProps = async ctx => {
-  const { token } = authenticated(ctx);
-  return { token };
+  const { token, user } = authenticated(ctx);
+
+  return { token, user };
 };
 
 export default CreateFeed;

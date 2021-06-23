@@ -14,7 +14,7 @@ import { authenticated } from '../../../hooks/auth';
 import Link from 'next/link';
 import schema, { FeedType } from '../../../util/validation/feedSchema';
 
-const Edit = ({ feed }) => {
+const Edit = ({ feed, user }) => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const route = useRouter();
@@ -52,7 +52,7 @@ const Edit = ({ feed }) => {
   return (
     <div className="flex flex-col">
       <Head>
-        <title>321 Update Feed Provider {feed.name} | RSS</title>
+        <title>Update Provider {feed.name} | RSS</title>
       </Head>
       <div className="text-gray-300 text-xl mb-4">
         <Link href="/feeds">
@@ -60,7 +60,7 @@ const Edit = ({ feed }) => {
         </Link>
         {' / '}
         <span className="text-gray-300">
-          Update Feed <span className="font-bold">{feed.name}</span>
+          Update <span className="font-bold">{feed.name}</span>
         </span>
       </div>
       <Form
@@ -82,8 +82,11 @@ const Edit = ({ feed }) => {
           <span className="ml-2 text-gray-300">Active</span>
         </label>
         <label className="flex items-center mb-4">
-          <Toggle name="is_public" type="checkbox" />
-          <span className="ml-2 text-gray-300">Public feed provider</span>
+          <Toggle disabled={!user.is_admin} name="is_public" type="checkbox" />
+          <span className="ml-2 text-gray-300">
+            Public feed provider&nbsp;
+            <small className="text-xs text-gray-400 italic">*admin only*</small>
+          </span>
         </label>
         <button
           type="submit"
@@ -101,12 +104,12 @@ export const getServerSideProps: GetServerSideProps = async ({
   req,
 }) => {
   const { id } = query;
-  authenticated({ req });
+  const { user } = authenticated({ req });
 
   const response = await api.get(`/feeds/${id}`);
   const { feed } = response.data;
   return {
-    props: { feed },
+    props: { feed, user },
   };
 };
 

@@ -1,5 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { connect } from '../../util/database';
+import { FeedType } from '../../util/validation/feedSchema';
 
 export interface FeedInterface {
   _id?: ObjectId;
@@ -12,8 +13,15 @@ export interface FeedInterface {
   updated_at?: Date;
 }
 
+interface CreateFeed extends FeedType{
+  user: {
+    _id: ObjectId;
+    email: string;
+  }
+}
+
 class FeedRepository {
-  async create({ name, url, is_active, is_public, user }: FeedInterface): Promise<FeedInterface> {
+  async create({ name, url, is_active, is_public, user }: CreateFeed): Promise<FeedInterface> {
     const { db } = await connect();
 
     const response = await db
@@ -23,8 +31,8 @@ class FeedRepository {
         name,
         url,
         is_active,
-        is_public,
-        user,
+        is_public: is_public && user.email === process.env.ADMIN_EMAIL,
+        user: user._id,
         created_at: new Date(),
         updated_at: new Date(),
       });

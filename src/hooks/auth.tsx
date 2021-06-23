@@ -151,6 +151,7 @@ interface AuthConfig {
 export const authenticated = (ctx, options = {}) => {
   const cookies = nextCookie(ctx);
   const token = cookies['@edu/rss-reader:token'];
+  const user = cookies['@edu/rss-reader:user'];
   const config = {
     redirectTo: '/login',
     redirect: true,
@@ -170,7 +171,7 @@ export const authenticated = (ctx, options = {}) => {
   // Needs to be here somehow...
   api.defaults.headers['Authorization'] = `Bearer ${token}`;
 
-  return { token };
+  return { token, user };
 };
 
 export function useAuth(config: AuthConfig = {}): AuthContextInterface {

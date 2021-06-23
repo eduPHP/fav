@@ -19,7 +19,7 @@ const handler = async (req: AuthApiRequest, res: NextApiResponse) => {
       is_active,
       is_public,
       url,
-      user: req.user._id,
+      user: { _id: req.user._id, email: req.user.email },
     });
 
     return res.json({ feed });
