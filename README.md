@@ -32,3 +32,4 @@ Study case.
 - [x] password recover
 - [x] edit profile
 - [x] visual feedback for public and active/inactive feeds
+- [ ] manage public feeds as admin
