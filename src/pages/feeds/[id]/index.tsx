@@ -54,11 +54,11 @@ const Edit = ({ feed, user }) => {
       <Head>
         <title>Update Provider {feed.name} | RSS</title>
       </Head>
-      <div className="text-gray-300 text-xl mb-4">
+      <div className="text-gray-300 text-xl mb-4 flex">
         <Link href="/feeds">
           <a className="flex items-center inline">RSS Providers</a>
         </Link>
-        {' / '}
+        <span className="mx-2"> / </span>
         <span className="text-gray-300">
           Update <span className="font-bold">{feed.name}</span>
         </span>

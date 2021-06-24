@@ -99,8 +99,8 @@ const ProvidersList = () => {
               className="py-6 px-8 flex items-center justify-between"
               key={feed._id}
             >
-              <span className="flex-1 max-w-[80%]">
-                <div className="mb-2 flex items-center">
+              <span className="flex-1 align-middle max-w-[80%]">
+                <div className="mb-2">
                   <span
                     className={`text-xl ${
                       !feed.is_active
@@ -111,16 +111,14 @@ const ProvidersList = () => {
                     {feed.name}
                   </span>
                   {feed.is_public && feed.is_active && (
-                    <span className="pl-1 text-gray-400 text-sm">
-                      {' '}
+                    <small className="pl-1 text-gray-400 text-sm">
                       [ public ]
-                    </span>
+                    </small>
                   )}
                   {!feed.is_active && (
-                    <span className="pl-1 text-gray-400 text-sm">
-                      {' '}
+                    <small className="pl-1 text-gray-400 text-sm">
                       [ inactive ]
-                    </span>
+                    </small>
                   )}
                 </div>
                 <span className="flex items-center">

@@ -9,8 +9,11 @@ module.exports = {
     extend: {
       cursor: {
         'not-allowed': 'not-allowed',
-      }
+      },
     },
+  },
+  variants: {
+    extend: {},
   },
   plugins: [],
 };
