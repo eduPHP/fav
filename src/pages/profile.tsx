@@ -1,16 +1,16 @@
-import { authenticated, useAuth } from '../hooks/auth';
-import api from '../services/api';
+import { authenticated, useAuth } from '@hooks/auth';
+import api from '@services/api';
 import Head from 'next/head';
 import { Form } from '@unform/web';
-import Input from '../components/Form/Input';
-import Button from '../components/Form/Button';
+import Input from '@components/Form/Input';
+import Button from '@components/Form/Button';
 import { useCallback, useRef } from 'react';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
-import getValidationErrors from '../util/getValidationErrors';
-import { useToast } from '../hooks/toasts';
+import getValidationErrors from '@util/getValidationErrors';
+import { useToast } from '@hooks/toasts';
 import { useRouter } from 'next/router';
-import { UserType, updateSchema } from '../util/validation/userSchema';
+import { UserType, updateSchema } from '@services/validation/userSchema';
 
 const Profile = ({ props }) => {
   const formRef = useRef<FormHandles>(null);

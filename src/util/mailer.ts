@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { mail } from '../../config';
+import { mail } from '@config/index';
 import aws from 'aws-sdk';
 
 export default {

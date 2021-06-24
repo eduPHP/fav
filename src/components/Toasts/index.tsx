@@ -1,7 +1,7 @@
 import React from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Toast from './Toast';
-import { ToastMessage } from '../../hooks/toasts';
+import { ToastMessage } from '@hooks/toasts';
 
 interface ContainerProps {
   toasts: ToastMessage[];

@@ -1,7 +1,7 @@
 import '../styles/globals.css';
-import AppProvider from '../hooks';
-import { Header } from '../components/Header';
-import Footer from '../components/Footer';
+import AppProvider from '@hooks/index';
+import { Header } from '@components/Header';
+import Footer from '@components/Footer';
 
 function MyApp({ Component, pageProps }) {
   return (

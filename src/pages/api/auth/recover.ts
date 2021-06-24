@@ -1,13 +1,13 @@
 import { NextApiResponse } from 'next';
 import * as Yup from 'yup';
-import { AuthApiRequest } from '../../../middleware/apiAuth';
-import UserRepository from '../../../services/repositories/UserRepository';
+import { AuthApiRequest } from '@middleware/apiAuth';
+import UserRepository from '@services/repositories/UserRepository';
 import { ObjectId } from 'mongodb';
-import PasswordResetsRepository from '../../../services/repositories/PasswordResetsRepository';
-import mailer from '../../../util/mailer';
-import services from '../../../../config/services';
-import { compare, encrypt } from '../../../services/bcrypt';
-import createToken from '../../../util/createToken';
+import PasswordResetsRepository from '@services/repositories/PasswordResetsRepository';
+import mailer from '@util/mailer';
+import services from '@config/services';
+import { compare, encrypt } from '@util/bcrypt';
+import createToken from '@util/createToken';
 
 interface RequestProps {
   email: string;

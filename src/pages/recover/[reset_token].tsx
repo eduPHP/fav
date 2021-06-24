@@ -1,16 +1,16 @@
 import Head from 'next/head';
 import { Form } from '@unform/web';
-import Input from '../../components/Form/Input';
+import Input from '@components/Form/Input';
 import { useCallback, useRef } from 'react';
 import { FormHandles } from '@unform/core';
-import { useToast } from '../../hooks/toasts';
+import { useToast } from '@hooks/toasts';
 import * as Yup from 'yup';
-import getValidationErrors from '../../util/getValidationErrors';
+import getValidationErrors from '@util/getValidationErrors';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { AuthState, useAuth } from '../../hooks/auth';
-import Button from '../../components/Form/Button';
-import api from '../../services/api';
+import { AuthState, useAuth } from '@hooks/auth';
+import Button from '@components/Form/Button';
+import api from '@services/api';
 
 interface RecoverData {
   email: string;

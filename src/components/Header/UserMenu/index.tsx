@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useAuth } from '../../../hooks/auth';
+import { useAuth } from '@hooks/auth';
 import Router from 'next/router';
 
 export default function UserMenu() {

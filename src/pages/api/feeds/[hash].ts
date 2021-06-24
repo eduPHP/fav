@@ -1,8 +1,8 @@
 import { NextApiResponse } from 'next';
-import feedSchema, { FeedType } from '../../../util/validation/feedSchema';
-import { AuthApiRequest, protect } from '../../../middleware/apiAuth';
-import { validate } from '../../../middleware/validation';
-import FeedRepository from '../../../services/repositories/FeedRepository';
+import feedSchema, { FeedType } from '@services/validation/feedSchema';
+import { AuthApiRequest, protect } from '@middleware/apiAuth';
+import { validate } from '@middleware/validation';
+import FeedRepository from '@services/repositories/FeedRepository';
 import { ObjectId } from 'mongodb';
 
 const handler = async (req: AuthApiRequest, res: NextApiResponse) => {

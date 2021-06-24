@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import UserMenu from './UserMenu';
-import { useAuth } from '../../hooks/auth';
+import { useAuth } from '@hooks/auth';
 
 export function Header() {
   const { authenticated } = useAuth();

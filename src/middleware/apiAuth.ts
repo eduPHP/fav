@@ -1,10 +1,10 @@
 import { NextApiResponse, NextApiRequest, NextApiHandler } from 'next';
 import jwt from 'jsonwebtoken';
 import { ValidationError } from 'yup';
-import getValidationErrors from '../util/getValidationErrors';
+import getValidationErrors from '@util/getValidationErrors';
 import UserRepository, {
   UserInterface,
-} from '../services/repositories/UserRepository';
+} from '@services/repositories/UserRepository';
 import { ObjectId } from 'mongodb';
 
 export interface AuthApiRequest extends NextApiRequest {

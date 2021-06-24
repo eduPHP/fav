@@ -1,8 +1,8 @@
 import { NextApiResponse } from 'next';
 import { ObjectId } from 'mongodb';
-import { AuthApiRequest, protect } from '../../../../middleware/apiAuth';
-import FeedRepository from '../../../../services/repositories/FeedRepository';
-import FetchFeedContent from '../../../../services/FetchFeedContent';
+import { AuthApiRequest, protect } from '@middleware/apiAuth';
+import FeedRepository from '@services/repositories/FeedRepository';
+import FetchFeedContent from '@services/FetchFeedContent';
 
 const handler = async (req: AuthApiRequest, res: NextApiResponse) => {
   const id = new ObjectId(req.query.hash as string);

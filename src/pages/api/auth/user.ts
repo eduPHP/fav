@@ -1,9 +1,9 @@
 import { NextApiResponse } from 'next';
-import { AuthApiRequest, protect } from '../../../middleware/apiAuth';
-import UserRepository from '../../../services/repositories/UserRepository';
-import { validate } from '../../../middleware/validation';
-import { updateSchema } from '../../../util/validation/userSchema';
-import { encrypt } from '../../../services/bcrypt';
+import { AuthApiRequest, protect } from '@middleware/apiAuth';
+import UserRepository from '@services/repositories/UserRepository';
+import { validate } from '@middleware/validation';
+import { updateSchema } from '@services/validation/userSchema';
+import { encrypt } from '@util/bcrypt';
 
 const handler = async (req: AuthApiRequest, res: NextApiResponse) => {
   const user = await UserRepository.find(req.user._id);

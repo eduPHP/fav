@@ -20,6 +20,16 @@
     "removeComments": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@middleware/*": ["./src/middleware/*"],
+      "@services/*": ["./src/services/*"],
+      "@repositories/*": ["./src/services/repositories/*"],
+      "@util/*": ["./src/util/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@config/*": ["./config/*"],
+      "@components/*": ["./src/components/*"]
+    }
   },
   "include": [
     "next-env.d.ts",

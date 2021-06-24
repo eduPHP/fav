@@ -1,7 +1,7 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import { ObjectShape, OptionalObjectSchema } from 'yup/lib/object';
 import * as Yup from 'yup';
-import getValidationErrors from '../util/getValidationErrors';
+import getValidationErrors from '@util/getValidationErrors';
 
 export function validate(
   handler: NextApiHandler,

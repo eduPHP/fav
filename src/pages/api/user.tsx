@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { connect } from '../../util/database';
-import { encrypt } from '../../services/bcrypt';
+import { connect } from '@services/database';
+import { encrypt } from '@util/bcrypt';
 
 interface CreateUserInterface {
   _id: string;

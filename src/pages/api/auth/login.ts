@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import * as Yup from 'yup';
-import UserRepository from '../../../services/repositories/UserRepository';
-import createToken from '../../../util/createToken';
-import { compare } from '../../../services/bcrypt';
+import UserRepository from '@services/repositories/UserRepository';
+import createToken from '@util/createToken';
+import { compare } from '@util/bcrypt';
 
 export default async function loginHandler(
   req: NextApiRequest,

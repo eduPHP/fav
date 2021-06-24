@@ -1,5 +1,5 @@
-import { connect } from '../../util/database';
-import { encrypt } from '../bcrypt';
+import { connect } from '@services/database';
+import { encrypt } from '@util/bcrypt';
 import { ObjectId } from 'mongodb';
 
 interface CreatePasswordResetInterface {

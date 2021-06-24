@@ -4,16 +4,16 @@ import Head from 'next/head';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
-import Input from '../../components/Form/Input';
-import Toggle from '../../components/Form/Toggle';
-import getValidationErrors from '../../util/getValidationErrors';
-import { useToast } from '../../hooks/toasts';
-import api from '../../services/api';
+import Input from '@components/Form/Input';
+import Toggle from '@components/Form/Toggle';
+import getValidationErrors from '@util/getValidationErrors';
+import { useToast } from '@hooks/toasts';
+import api from '@services/api';
 import { useRouter } from 'next/router';
-import Button from '../../components/Form/Button';
-import { authenticated } from '../../hooks/auth';
+import Button from '@components/Form/Button';
+import { authenticated } from '@hooks/auth';
 import Link from 'next/link';
-import schema, { FeedType } from '../../util/validation/feedSchema';
+import schema, { FeedType } from '@services/validation/feedSchema';
 
 const CreateFeed = ({ user }) => {
   const formRef = useRef<FormHandles>(null);

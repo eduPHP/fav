@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb';
-import { connect } from '../../util/database';
-import { FeedType } from '../../util/validation/feedSchema';
+import { connect } from '@services/database';
+import { FeedType } from '@services/validation/feedSchema';
 
 export interface FeedInterface {
   _id?: ObjectId;

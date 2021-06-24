@@ -1,13 +1,13 @@
-import { authenticated, useAuth } from '../../../hooks/auth';
+import { authenticated, useAuth } from '@hooks/auth';
 import { FeedItem } from '../../index';
-import api from '../../../services/api';
-import { formatter } from '../../../util/dateFormatter';
+import api from '@services/api';
+import { formatter } from '@util/dateFormatter';
 import { useEffect, useState } from 'react';
-import FeedsList from '../../../components/FeedsList';
+import FeedsList from '@components/FeedsList';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useToast } from '../../../hooks/toasts';
+import { useToast } from '@hooks/toasts';
 
 interface ProviderDetailsResponse {
   item: FeedItem[];

@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import { useCallback, useEffect, useState } from 'react';
-import { formatter } from '../util/dateFormatter';
-import { authenticated, useAuth } from '../hooks/auth';
-import api from '../services/api';
-import ScrollToTop from '../components/ScrollToTop';
-import FeedsList from '../components/FeedsList';
+import { formatter } from '@util/dateFormatter';
+import { authenticated, useAuth } from '@hooks/auth';
+import api from '@services/api';
+import ScrollToTop from '@components/ScrollToTop';
+import FeedsList from '@components/FeedsList';
 
 export interface FeedItem {
   provider_id: number;
@@ -27,8 +27,8 @@ const Home = () => {
     const response = await api.get<FeedItem[]>(
       authenticated ? `/feeds/contents` : `feeds/public-contents`,
     );
+    setReloadAvailable(authenticated);
     if (!authenticated) {
-      setReloadAvailable(false);
       setTimeout(() => {
         setReloadAvailable(true);
       }, 60000);

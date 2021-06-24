@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { ObjectId } from 'mongodb';
-import FeedRepository from '../../../../services/repositories/FeedRepository';
-import FetchFeedContent from '../../../../services/FetchFeedContent';
+import FeedRepository from '@services/repositories/FeedRepository';
+import FetchFeedContent from '@services/FetchFeedContent';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const id = new ObjectId(req.query.hash as string);

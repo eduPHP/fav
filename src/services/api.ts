@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Cookie from 'universal-cookie';
 
-import services from '../../config/services';
+import services from '@config/services';
 
 const api = axios.create({
   baseURL: services.api_url,

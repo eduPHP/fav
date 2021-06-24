@@ -1,14 +1,14 @@
 import Head from 'next/head';
 import { Form } from '@unform/web';
-import Input from '../../components/Form/Input';
+import Input from '@components/Form/Input';
 import { useCallback, useRef, useState } from 'react';
 import { FormHandles } from '@unform/core';
-import { useToast } from '../../hooks/toasts';
+import { useToast } from '@hooks/toasts';
 import * as Yup from 'yup';
-import getValidationErrors from '../../util/getValidationErrors';
+import getValidationErrors from '@util/getValidationErrors';
 import Link from 'next/link';
-import Button from '../../components/Form/Button';
-import api from '../../services/api';
+import Button from '@components/Form/Button';
+import api from '@services/api';
 
 interface ForgotData {
   email: string;

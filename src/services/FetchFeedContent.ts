@@ -4,7 +4,7 @@ import ParseXmlFeedContent, {
   FeedItem,
   FeedListInterface,
 } from './ParseXmlFeedContent';
-import { FeedInterface } from './repositories/FeedRepository';
+import { FeedInterface } from '@repositories/FeedRepository';
 
 interface ResponseFeedItem extends FeedItem {
   provider_id: string;

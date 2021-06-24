@@ -1,7 +1,7 @@
 import { NextApiResponse } from 'next';
-import { AuthApiRequest } from '../../../../middleware/apiAuth';
-import FeedRepository from '../../../../services/repositories/FeedRepository';
-import FetchFeedContent from '../../../../services/FetchFeedContent';
+import { AuthApiRequest } from '@middleware/apiAuth';
+import FeedRepository from '@services/repositories/FeedRepository';
+import FetchFeedContent from '@services/FetchFeedContent';
 
 const handler = async (req: AuthApiRequest, res: NextApiResponse) => {
   const feeds = await FeedRepository.findAllPublic();

@@ -1,5 +1,5 @@
-import { connect } from '../../util/database';
-import { encrypt } from '../bcrypt';
+import { connect } from '@services/database';
+import { encrypt } from '@util/bcrypt';
 import md5 from 'md5';
 import { ObjectId } from 'mongodb';
 

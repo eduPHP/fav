@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import UserRepository from '../../../services/repositories/UserRepository';
-import createToken from '../../../util/createToken';
-import { validate } from '../../../middleware/validation';
-import userSchema from '../../../util/validation/userSchema';
+import UserRepository from '@services/repositories/UserRepository';
+import createToken from '@util/createToken';
+import { validate } from '@middleware/validation';
+import userSchema from '@services/validation/userSchema';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { name, email, password } = req.body;

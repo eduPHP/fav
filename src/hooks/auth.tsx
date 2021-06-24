@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import Router from 'next/router';
 import Cookie from 'universal-cookie';
-import api from '../services/api';
+import api from '@services/api';
 import nextCookie from 'next-cookies';
 
 const cookie = new Cookie();

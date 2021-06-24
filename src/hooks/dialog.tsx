@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
-import DialogModal from '../components/DialogModal';
+import DialogModal from '@components/DialogModal';
 
 export interface DialogMessage {
   type?: 'success' | 'danger' | 'info';

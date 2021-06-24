@@ -2,17 +2,17 @@ import { GetServerSideProps } from 'next';
 import { useCallback, useRef } from 'react';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
-import api from '../../../services/api';
+import api from '@services/api';
 import { Form } from '@unform/web';
-import Input from '../../../components/Form/Input';
-import Toggle from '../../../components/Form/Toggle';
-import getValidationErrors from '../../../util/getValidationErrors';
-import { useToast } from '../../../hooks/toasts';
+import Input from '@components/Form/Input';
+import Toggle from '@components/Form/Toggle';
+import getValidationErrors from '@util/getValidationErrors';
+import { useToast } from '@hooks/toasts';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { authenticated } from '../../../hooks/auth';
+import { authenticated } from '@hooks/auth';
 import Link from 'next/link';
-import schema, { FeedType } from '../../../util/validation/feedSchema';
+import schema, { FeedType } from '@services/validation/feedSchema';
 
 const Edit = ({ feed, user }) => {
   const formRef = useRef<FormHandles>(null);

@@ -1,7 +1,7 @@
-import { Fragment, useCallback, useRef, useState } from 'react';
+import { Fragment, useCallback, useRef } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { CheckIcon, ExclamationIcon, BellIcon } from '@heroicons/react/outline';
-import { useDialog } from '../../hooks/dialog';
+import { useDialog } from '@hooks/dialog';
 
 export default function DialogModal() {
   const { dialog, closeDialog } = useDialog();

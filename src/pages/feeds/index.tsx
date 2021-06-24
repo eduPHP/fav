@@ -1,11 +1,11 @@
 import Link from 'next/link';
-import api from '../../services/api';
+import api from '@services/api';
 import Head from 'next/head';
-import { useToast } from '../../hooks/toasts';
+import { useToast } from '@hooks/toasts';
 import { useCallback, useEffect, useState } from 'react';
-import { useDialog } from '../../hooks/dialog';
-import { authenticated } from '../../hooks/auth';
-import { FeedType } from '../../util/validation/feedSchema';
+import { useDialog } from '@hooks/dialog';
+import { authenticated } from '@hooks/auth';
+import { FeedType } from '@services/validation/feedSchema';
 
 type FeedsList = {
   feeds: FeedType[];
