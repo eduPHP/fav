@@ -31,4 +31,4 @@ Study case.
 - [x] List rss from one provider
 - [x] password recover
 - [x] edit profile
-- [ ] visual feedback for public and active/inactive feeds
+- [x] visual feedback for public and active/inactive feeds
