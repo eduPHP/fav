@@ -6,10 +6,11 @@ module.exports = {
     fontFamily: {
       sans: ['Open Sans', 'sans-serif'],
     },
-    extend: {},
-  },
-  variants: {
-    extend: {},
+    extend: {
+      cursor: {
+        'not-allowed': 'not-allowed',
+      }
+    },
   },
   plugins: [],
 };

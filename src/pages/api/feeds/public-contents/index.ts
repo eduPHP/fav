@@ -8,6 +8,8 @@ const handler = async (req: AuthApiRequest, res: NextApiResponse) => {
 
   const fetchFeed = new FetchFeedContent();
 
+  res.setHeader('Cache-Control', 'public, max-age=55, must-revalidate')
+
   return res.json(await fetchFeed.handleMany(feeds));
 }
 
