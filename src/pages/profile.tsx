@@ -54,31 +54,31 @@ const Profile = ({ props }) => {
   );
 
   return (
-    <div className='flex flex-col max-w-md mx-auto'>
+    <div className="flex flex-col max-w-md mx-auto">
       <Head>
         <title>Register | RSS</title>
       </Head>
-      <h1 className='text-xl mb-4 text-gray-300'>Profile</h1>
+      <h1 className="text-xl mb-4 text-gray-300">Profile</h1>
       <Form
-        className='rounded-lg shadow bg-gray-600 py-6 px-8'
+        className="rounded-lg shadow bg-gray-600 py-6 px-8"
         ref={formRef}
         onSubmit={handleRegister}
         initialData={user}
       >
-        <label className='block mb-2 w-full'>
-          <span className='block text-gray-300 mb-2'>Name</span>
-          <Input name='name' />
+        <label className="block mb-2 w-full">
+          <span className="block text-gray-300 mb-2">Name</span>
+          <Input name="name" />
         </label>
 
-        <label className='block mb-2 w-full'>
-          <span className='block text-gray-300 mb-2'>Email</span>
-          <Input name='email' type='email' />
+        <label className="block mb-2 w-full">
+          <span className="block text-gray-300 mb-2">Email</span>
+          <Input name="email" type="email" />
         </label>
-        <label className='block mb-8 w-full'>
-          <span className='block text-gray-300 mb-2'>Password</span>
-          <Input name='password' type='password' />
+        <label className="block mb-8 w-full">
+          <span className="block text-gray-300 mb-2">Password</span>
+          <Input name="password" type="password" />
         </label>
-        <Button type='submit' className='bg-blue-400 text-blue-100'>
+        <Button type="submit" className="bg-blue-400 text-blue-100">
           Save
         </Button>
       </Form>

@@ -6,12 +6,11 @@ export interface DialogMessage {
   title: string;
   description?: string;
   options?: {
-    cancel?: string
-    confirm?: string
+    cancel?: string;
+    confirm?: string;
   };
-  action: CallableFunction
+  action: CallableFunction;
 }
-
 
 interface DialogContextInterface {
   dialog: DialogMessage;
@@ -21,7 +20,7 @@ interface DialogContextInterface {
 
 const DialogContext = createContext<DialogContextInterface>(
   {} as DialogContextInterface,
-)
+);
 
 export const DialogProvider: React.FC = ({ children }) => {
   const [dialog, setDialog] = useState<DialogMessage | null>(null);
@@ -47,7 +46,7 @@ export const DialogProvider: React.FC = ({ children }) => {
   return (
     <DialogContext.Provider value={{ dialog, showDialog, closeDialog }}>
       {children}
-      { dialog && <DialogModal />}
+      {dialog && <DialogModal />}
     </DialogContext.Provider>
   );
 };

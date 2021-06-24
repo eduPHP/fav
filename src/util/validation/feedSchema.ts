@@ -5,8 +5,8 @@ const feed = object({
   url: string().url().required(),
   is_active: boolean().required(),
   is_public: boolean().required(),
-})
+});
 
 export type FeedType = TypeOf<typeof feed>;
 
-export default feed
+export default feed;

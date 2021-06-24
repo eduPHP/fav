@@ -7,12 +7,7 @@ import feedSchema, { FeedType } from '../../../util/validation/feedSchema';
 
 const handler = async (req: AuthApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
-    const {
-      name,
-      is_active,
-      is_public,
-      url,
-    } = req.body as FeedType;
+    const { name, is_active, is_public, url } = req.body as FeedType;
 
     const feed = await FeedRepository.create({
       name,

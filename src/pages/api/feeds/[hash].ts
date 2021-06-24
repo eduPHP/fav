@@ -15,23 +15,18 @@ const handler = async (req: AuthApiRequest, res: NextApiResponse) => {
   }
 
   if (req.method === 'GET') {
-    return res.json({ feed })
+    return res.json({ feed });
   }
 
   if (req.method === 'PUT') {
-    const {
-      name,
-      is_active,
-      is_public,
-      url,
-    } = req.body as FeedType;
+    const { name, is_active, is_public, url } = req.body as FeedType;
 
     Object.assign(feed, {
       name,
       is_active,
       is_public,
       url,
-    })
+    });
 
     const updated = await FeedRepository.update(feed);
 

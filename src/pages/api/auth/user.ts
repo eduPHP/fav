@@ -10,7 +10,7 @@ const handler = async (req: AuthApiRequest, res: NextApiResponse) => {
 
   if (req.method === 'PUT') {
     if (req.body.password.length) {
-      req.body.password = await encrypt(req.body.password)
+      req.body.password = await encrypt(req.body.password);
     } else {
       delete req.body.password;
     }
@@ -20,17 +20,17 @@ const handler = async (req: AuthApiRequest, res: NextApiResponse) => {
     try {
       await UserRepository.update(user);
     } catch (e) {
-      return res.status(422).json({ errors: { email: e.message } })
+      return res.status(422).json({ errors: { email: e.message } });
     }
 
-    return res.json({ user: UserRepository.present(user) })
+    return res.json({ user: UserRepository.present(user) });
   }
 
   if (req.method === 'GET') {
-    return res.json({ user: UserRepository.present(user) })
+    return res.json({ user: UserRepository.present(user) });
   }
 
-  res.status(405)
-}
+  res.status(405);
+};
 
-export default protect(validate(handler, updateSchema))
+export default protect(validate(handler, updateSchema));

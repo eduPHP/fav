@@ -3,7 +3,10 @@ import { ObjectShape, OptionalObjectSchema } from 'yup/lib/object';
 import * as Yup from 'yup';
 import getValidationErrors from '../util/getValidationErrors';
 
-export function validate(handler: NextApiHandler, schema: OptionalObjectSchema<ObjectShape>) {
+export function validate(
+  handler: NextApiHandler,
+  schema: OptionalObjectSchema<ObjectShape>,
+) {
   return async (req: NextApiRequest, res: NextApiResponse) => {
     if (['POST', 'PUT'].includes(req.method)) {
       try {

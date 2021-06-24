@@ -20,7 +20,7 @@ export interface FeedItem {
 const Home = () => {
   const [feeds, setFeeds] = useState<FeedItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [reloadAvailable, setReloadAvailable] = useState(true)
+  const [reloadAvailable, setReloadAvailable] = useState(true);
   const { authenticated } = useAuth();
 
   async function getFeeds() {
@@ -29,7 +29,9 @@ const Home = () => {
     );
     if (!authenticated) {
       setReloadAvailable(false);
-      setTimeout(() => { setReloadAvailable(true) }, 60000)
+      setTimeout(() => {
+        setReloadAvailable(true);
+      }, 60000);
     }
     setFeeds(
       response.data.map(i => {
@@ -63,13 +65,19 @@ const Home = () => {
       </Head>
       <div>
         <button
-          className={`flex items-center ${reloadAvailable ? 'text-green-500' : 'text-gray-400 cursor-not-allowed'}`}
+          className={`flex items-center ${
+            reloadAvailable
+              ? 'text-green-500'
+              : 'text-gray-400 cursor-not-allowed'
+          }`}
           type="button"
           disabled={!reloadAvailable || loading}
           onClick={handleRefresh}
         >
           <svg
-            className={`w-4 h-4 fill-current mr-2 ${loading ? 'animate-spin' : ''}`}
+            className={`w-4 h-4 fill-current mr-2 ${
+              loading ? 'animate-spin' : ''
+            }`}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 512 512"
           >

@@ -101,12 +101,26 @@ const ProvidersList = () => {
             >
               <span className="flex-1 max-w-[80%]">
                 <div className="mb-2 flex items-center">
-                  <span className={`text-xl ${!feed.is_active ? 'line-through text-gray-400' : 'text-blue-300'}`}>{feed.name}</span>
+                  <span
+                    className={`text-xl ${
+                      !feed.is_active
+                        ? 'line-through text-gray-400'
+                        : 'text-blue-300'
+                    }`}
+                  >
+                    {feed.name}
+                  </span>
                   {feed.is_public && feed.is_active && (
-                    <span className="pl-1 text-gray-400 text-sm"> [ public ]</span>
+                    <span className="pl-1 text-gray-400 text-sm">
+                      {' '}
+                      [ public ]
+                    </span>
                   )}
                   {!feed.is_active && (
-                    <span className="pl-1 text-gray-400 text-sm"> [ inactive ]</span>
+                    <span className="pl-1 text-gray-400 text-sm">
+                      {' '}
+                      [ inactive ]
+                    </span>
                   )}
                 </div>
                 <span className="flex items-center">

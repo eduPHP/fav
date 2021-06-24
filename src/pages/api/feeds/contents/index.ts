@@ -9,5 +9,5 @@ const handler = async (req: AuthApiRequest, res: NextApiResponse) => {
   const fetchFeed = new FetchFeedContent();
 
   return res.json(await fetchFeed.handleMany(feeds));
-}
+};
 export default protect(handler);

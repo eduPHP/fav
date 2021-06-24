@@ -7,11 +7,11 @@ import ParseXmlFeedContent, {
 import { FeedInterface } from './repositories/FeedRepository';
 
 interface ResponseFeedItem extends FeedItem {
-  provider_id: string
+  provider_id: string;
 }
 
 interface ResponseFeedListInterface extends Omit<FeedListInterface, 'item'> {
-  item: ResponseFeedItem[]
+  item: ResponseFeedItem[];
 }
 
 export default class {
@@ -21,7 +21,10 @@ export default class {
       const content = await ParseXmlFeedContent.parse(response.data);
       return {
         ...content,
-        item: content.item.map(i => ({ ...i, provider_id: feed._id.toHexString() })),
+        item: content.item.map(i => ({
+          ...i,
+          provider_id: feed._id.toHexString(),
+        })),
       };
     } catch (err) {
       return {

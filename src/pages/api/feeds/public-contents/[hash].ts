@@ -14,6 +14,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const fetchFeed = new FetchFeedContent();
 
+  res.setHeader(
+    'Cache-Control',
+    'public, max-age=55, must-revalidate, stale-while-revalidate=55',
+  );
+
   return res.json(await fetchFeed.handle(feed));
 };
 

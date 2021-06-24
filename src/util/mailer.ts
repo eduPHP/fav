@@ -21,12 +21,12 @@ export default {
 
   transporter() {
     aws.config.update({
-      'accessKeyId': mail.key,
-      'secretAccessKey': mail.secret,
-    })
+      accessKeyId: mail.key,
+      secretAccessKey: mail.secret,
+    });
     const ses = new aws.SES({
-      apiVersion: "2010-12-01",
-      region: "us-east-1",
+      apiVersion: '2010-12-01',
+      region: 'us-east-1',
     });
 
     return nodemailer.createTransport({

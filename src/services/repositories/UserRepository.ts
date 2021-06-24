@@ -21,19 +21,21 @@ export interface PresentUser {
 }
 
 class UserRepository {
-  async create({ name, email, password }: UserInterface): Promise<UserInterface> {
+  async create({
+    name,
+    email,
+    password,
+  }: UserInterface): Promise<UserInterface> {
     const { db } = await connect();
 
-    const response = await db
-      .collection<UserInterface>('users')
-      .insertOne({
-        _id: new ObjectId(),
-        name,
-        email,
-        password: await encrypt(password),
-        created_at: new Date(),
-        updated_at: new Date(),
-      });
+    const response = await db.collection<UserInterface>('users').insertOne({
+      _id: new ObjectId(),
+      name,
+      email,
+      password: await encrypt(password),
+      created_at: new Date(),
+      updated_at: new Date(),
+    });
 
     return response.ops[0];
   }
@@ -41,9 +43,7 @@ class UserRepository {
   public async findByEmail(email: string): Promise<UserInterface> {
     const { db } = await connect();
 
-    return await db
-      .collection<UserInterface>('users')
-      .findOne({ email });
+    return await db.collection<UserInterface>('users').findOne({ email });
   }
 
   present(user: UserInterface): PresentUser {
@@ -59,9 +59,7 @@ class UserRepository {
   async find(id: ObjectId): Promise<UserInterface> {
     const { db } = await connect();
 
-    return await db
-      .collection<UserInterface>('users')
-      .findOne({ _id: id });
+    return await db.collection<UserInterface>('users').findOne({ _id: id });
   }
 
   async update(user: UserInterface): Promise<UserInterface> {
@@ -69,17 +67,17 @@ class UserRepository {
 
     const emailExists = await db
       .collection<UserInterface>('users')
-      .findOne({ email: user.email, _id: { $ne: user._id } })
+      .findOne({ email: user.email, _id: { $ne: user._id } });
 
     if (emailExists) {
-      throw new Error('Email is already taken.')
+      throw new Error('Email is already taken.');
     }
 
     await db
       .collection<UserInterface>('users')
       .findOneAndReplace(
         { _id: user._id },
-        { ...user, updated_at: new Date() }
+        { ...user, updated_at: new Date() },
       );
 
     return user;

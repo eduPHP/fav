@@ -2,14 +2,19 @@ import { NextApiResponse, NextApiRequest, NextApiHandler } from 'next';
 import jwt from 'jsonwebtoken';
 import { ValidationError } from 'yup';
 import getValidationErrors from '../util/getValidationErrors';
-import UserRepository, { UserInterface } from '../services/repositories/UserRepository';
+import UserRepository, {
+  UserInterface,
+} from '../services/repositories/UserRepository';
 import { ObjectId } from 'mongodb';
 
 export interface AuthApiRequest extends NextApiRequest {
-  user: UserInterface
+  user: UserInterface;
 }
 
-export const getUserFromToken = async (req: NextApiRequest, res: NextApiResponse): Promise<UserInterface | void> => {
+export const getUserFromToken = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+): Promise<UserInterface | void> => {
   let bearer = req.headers.authorization;
 
   if (!bearer) {
@@ -38,7 +43,6 @@ export const getUserFromToken = async (req: NextApiRequest, res: NextApiResponse
   }
 };
 
-
 export const protect = (handler: NextApiHandler) => {
   return async (req: AuthApiRequest, res: NextApiResponse) => {
     const user = await getUserFromToken(req, res);
@@ -56,5 +60,5 @@ export const protect = (handler: NextApiHandler) => {
       }
       return res.status(500).json({ message: 'Server Error' });
     }
-  }
-}
+  };
+};

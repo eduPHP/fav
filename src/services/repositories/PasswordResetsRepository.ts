@@ -15,7 +15,10 @@ interface PasswordResetInterface {
 }
 
 class PasswordResetsRepository {
-  async create({ user, token }: CreatePasswordResetInterface): Promise<PasswordResetInterface> {
+  async create({
+    user,
+    token,
+  }: CreatePasswordResetInterface): Promise<PasswordResetInterface> {
     const { db } = await connect();
 
     const response = await db
@@ -25,7 +28,7 @@ class PasswordResetsRepository {
         user,
         token: await encrypt(token),
         reset_at: null,
-        created_at: new Date()
+        created_at: new Date(),
       });
 
     return response.ops[0];
@@ -36,10 +39,13 @@ class PasswordResetsRepository {
 
     await db
       .collection<PasswordResetInterface>('password_resets')
-      .findOneAndReplace({_id: passwordReset._id}, {
-        ...passwordReset,
-        reset_at: new Date()
-      })
+      .findOneAndReplace(
+        { _id: passwordReset._id },
+        {
+          ...passwordReset,
+          reset_at: new Date(),
+        },
+      );
   }
 
   async find(id: ObjectId): Promise<PasswordResetInterface> {
@@ -47,7 +53,7 @@ class PasswordResetsRepository {
 
     return db
       .collection<PasswordResetInterface>('password_resets')
-      .findOne({_id: id})
+      .findOne({ _id: id });
   }
 }
 
