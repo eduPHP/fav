@@ -16,12 +16,6 @@ interface LoginData {
   password: string;
 }
 
-interface UserData {
-  user: {
-    name: string;
-  };
-}
-
 const Login = () => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
@@ -68,7 +62,7 @@ const Login = () => {
         }
       }
     },
-    [addToast],
+    [addToast, router, signIn],
   );
 
   return (

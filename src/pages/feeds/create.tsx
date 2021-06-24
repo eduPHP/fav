@@ -46,7 +46,7 @@ const CreateFeed = ({ user }) => {
         }
       }
     },
-    [addToast],
+    [addToast, router],
   );
 
   return (

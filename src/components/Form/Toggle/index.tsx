@@ -35,7 +35,7 @@ const Toggle: React.FC<Props> = ({ name, ...rest }) => {
 
   const toggleChecked = useCallback(() => {
     setChecked(!checked);
-  }, [setChecked, inputRef, checked]);
+  }, [setChecked, checked]);
 
   return (
     <div className="flex justify-between items-center">

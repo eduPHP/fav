@@ -46,7 +46,7 @@ const ProvidersList = () => {
         },
       });
     },
-    [addToast],
+    [addToast, showDialog],
   );
 
   return (

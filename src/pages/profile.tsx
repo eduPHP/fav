@@ -12,7 +12,7 @@ import { useToast } from '@hooks/toasts';
 import { useRouter } from 'next/router';
 import { UserType, updateSchema } from '@services/validation/userSchema';
 
-const Profile = ({ props }) => {
+const Profile = ({ token }) => {
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const router = useRouter();
@@ -26,7 +26,7 @@ const Profile = ({ props }) => {
         await updateSchema.validate(data, { abortEarly: false });
 
         const res = await api.put('/auth/user', data);
-        await updateUser(res.data.user, props.token);
+        await updateUser(res.data.user, token);
 
         addToast({
           title: 'Success',
@@ -50,7 +50,7 @@ const Profile = ({ props }) => {
         }
       }
     },
-    [addToast],
+    [addToast, token, router, updateUser],
   );
 
   return (
@@ -93,7 +93,7 @@ Profile.getInitialProps = async ctx => {
 
   const user = response.data;
 
-  return { props: { token, user } };
+  return { token, user };
 };
 
 export default Profile;

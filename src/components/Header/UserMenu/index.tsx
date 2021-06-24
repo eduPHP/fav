@@ -1,7 +1,14 @@
-import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useAuth } from '@hooks/auth';
 import Router from 'next/router';
+import Image from 'next/image';
+import Link from 'next/link';
+import md5 from 'md5';
+
+import { useAuth } from '@hooks/auth';
+
+const gravatar = ({ src, width }) => {
+  return `https://www.gravatar.com/avatar/${md5(src)}?d=mp&s=${width}`;
+};
 
 export default function UserMenu() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -33,7 +40,7 @@ export default function UserMenu() {
     document.removeEventListener('click', handleClickOutside, true);
     await signOut();
     await Router.push('/');
-  }, []);
+  }, [signOut]);
 
   return (
     <div className="relative text-gray-300" ref={ref}>
@@ -51,8 +58,11 @@ export default function UserMenu() {
           <path d="M257.778 386.671L0 128.893h128.886l128.892 128.889 128.886-128.897 128.892.008z" />
         </svg>
         <span className="mr-2">{user.name}</span>
-        <img
-          src={user.avatar}
+        <Image
+          src={user.email}
+          loader={gravatar}
+          width={40}
+          height={40}
           className="w-10 h-10 rounded-full"
           alt="Eduardo f"
         />

@@ -50,7 +50,7 @@ const Register = () => {
         }
       }
     },
-    [addToast],
+    [addToast, router, signUp],
   );
 
   return (

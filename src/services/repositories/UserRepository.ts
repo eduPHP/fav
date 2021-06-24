@@ -1,6 +1,5 @@
 import { connect } from '@services/database';
 import { encrypt } from '@util/bcrypt';
-import md5 from 'md5';
 import { ObjectId } from 'mongodb';
 
 export interface UserInterface {
@@ -16,7 +15,6 @@ export interface PresentUser {
   _id: string;
   email: string;
   name: string;
-  avatar: string;
   is_admin?: boolean;
 }
 
@@ -51,7 +49,6 @@ class UserRepository {
       _id: user._id.toHexString(),
       email: user.email,
       name: user.name,
-      avatar: `https://www.gravatar.com/avatar/${md5(user.email)}?d=mp&s=80`,
       is_admin: user.email === process.env.ADMIN_EMAIL,
     };
   }

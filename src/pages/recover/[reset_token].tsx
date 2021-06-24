@@ -64,7 +64,7 @@ const Reset_token = () => {
         }
       }
     },
-    [addToast, router.query.reset_token],
+    [addToast, router, setToken],
   );
 
   return (

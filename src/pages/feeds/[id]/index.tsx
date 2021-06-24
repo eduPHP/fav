@@ -47,7 +47,7 @@ const Edit = ({ feed, user }) => {
         }
       }
     },
-    [addToast],
+    [addToast, feed._id, route],
   );
   return (
     <div className="flex flex-col">

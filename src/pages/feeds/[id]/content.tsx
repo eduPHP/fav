@@ -2,7 +2,7 @@ import { authenticated, useAuth } from '@hooks/auth';
 import { FeedItem } from '../../index';
 import api from '@services/api';
 import { formatter } from '@util/dateFormatter';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import FeedsList from '@components/FeedsList';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -29,7 +29,7 @@ const Content = () => {
   const { authenticated } = useAuth();
   const id = router.query.id;
 
-  async function getFeeds() {
+  const getFeeds = useCallback(async () => {
     api
       .get<ProviderDetailsResponse>(
         authenticated
@@ -65,7 +65,7 @@ const Content = () => {
             setTimeout(() => router.push('/'), 3000);
         }
       });
-  }
+  }, [addToast, setLoading, id, router, authenticated]);
 
   useEffect(() => {
     (async () => {
@@ -73,7 +73,7 @@ const Content = () => {
         await getFeeds();
       }
     })();
-  }, [id, authenticated]);
+  }, [id, authenticated, getFeeds]);
 
   return (
     <>

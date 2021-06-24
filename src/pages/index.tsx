@@ -23,7 +23,7 @@ const Home = () => {
   const [reloadAvailable, setReloadAvailable] = useState(true);
   const { authenticated } = useAuth();
 
-  async function getFeeds() {
+  const getFeeds = useCallback(async () => {
     const response = await api.get<FeedItem[]>(
       authenticated ? `/feeds/contents` : `feeds/public-contents`,
     );
@@ -44,19 +44,19 @@ const Home = () => {
       }),
     );
     setLoading(false);
-  }
+  }, [authenticated]);
 
   useEffect(() => {
     (async () => {
       setLoading(true);
       await getFeeds();
     })();
-  }, [authenticated]);
+  }, [authenticated, getFeeds]);
 
   const handleRefresh = useCallback(async () => {
     setLoading(true);
     await getFeeds();
-  }, []);
+  }, [getFeeds]);
 
   return (
     <>

@@ -26,7 +26,6 @@ interface SignUpCredentials {
 export interface AuthUser {
   name: string;
   email: string;
-  avatar?: string;
 }
 
 export interface AuthState {
@@ -98,10 +97,10 @@ export const AuthProvider: React.FC = ({ children }) => {
   );
 
   const updateUser = useCallback(
-    async ({ name, email, avatar }: AuthUser, token: string) => {
+    async ({ name, email }: AuthUser, token: string) => {
       await setToken({
         token: data.token,
-        user: { email, name, avatar },
+        user: { email, name },
       });
     },
     [setToken, data],
