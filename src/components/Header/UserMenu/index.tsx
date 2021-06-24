@@ -58,14 +58,16 @@ export default function UserMenu() {
           <path d="M257.778 386.671L0 128.893h128.886l128.892 128.889 128.886-128.897 128.892.008z" />
         </svg>
         <span className="mr-2">{user.name}</span>
-        <Image
-          src={user.email}
-          loader={gravatar}
-          width={40}
-          height={40}
-          className="w-10 h-10 rounded-full"
-          alt="Eduardo f"
-        />
+        <div className="w-11 h-11 border border-gray-700 rounded-full">
+          <Image
+            src={user.email}
+            loader={gravatar}
+            width={42}
+            height={42}
+            className="rounded-full"
+            alt="Eduardo f"
+          />
+        </div>
       </div>
       <ul
         className={`bg-gray-700 rounded shadow-lg absolute w-56 right-0 top-11 grid text-right
